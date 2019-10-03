@@ -1,0 +1,218 @@
+﻿@model LOF.ViewModel.CommonIndex
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Bootshop online Shopping cart</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+
+    <link id="callCss" rel="stylesheet" href="@Url.Content("~/Content/mytemplate/themes/bootshop/bootstrap.min.css")" media="screen" />
+    <link href="@Url.Content("~/Content/mytemplate/themes/css/base.css")" type="text/css" rel="stylesheet" media="screen" />
+    <link href="@Url.Content("~/Content/mytemplate")" type="text/css" rel="stylesheet" media="screen" />
+
+    <!-- Bootstrap style responsive -->
+    <link href="@Url.Content("~/Content/mytemplate/themes/css/bootstrap-responsive.min.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/mytemplate/themes/css/font-awesome.css")" rel="stylesheet" type="text/css" />
+    <!-- Google-code-prettify -->
+    <link href="@Url.Content("~/Content/mytemplate/themes/js/google-code-prettify/prettify.css")" rel="stylesheet" />
+    <!-- fav and touch icons -->
+    <link rel="shortcut icon" href="@Url.Content("~/Content/mytemplate/themes/images/ico/favicon.ico")">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="@Url.Content("~/Content/mytemplate/themes/images/ico/apple-touch-icon-144-precomposed.png")">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="@Url.Content("~/Content/mytemplate/themes/images/ico/apple-touch-icon-114-precomposed.png")">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="@Url.Content("~/Content/mytemplate/themes/images/ico/apple-touch-icon-72-precomposed.png")">
+    <link rel="apple-touch-icon-precomposed" href="@Url.Content("~/Content/mytemplate/themes/images/ico/apple-touch-icon-57-precomposed.png")">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <style type="text/css" id="enject">
+    </style>
+</head>
+<body>
+    <div id="mainBody">
+        <div class="container">
+            <div class="row">
+                <!-- Sidebar ================================================== -->
+                <div id="sidebar" class="col-md-3">
+                    <form>
+                        <div class="radio">
+                            <label>   <input type="radio" onclick="window.location='@Url.Content("~/Foundproducts/Index")';" name="options"> Found Products</label>
+                        </div>
+                        <div class="radio">
+                            <label><input type="radio" onclick="window.location='@Url.Content("~/Lostproducts/Index")';" name="optradio">Lost Products</label>
+                        </div>
+
+                    </form>
+
+                    <ul id="sideManu" class="nav nav-tabs nav-stacked">
+                        <li class="subMenu open">
+                            <a> ELECTRONICS [230]</a>
+                            <ul>
+                                <li><a class="active" id="myInput" data-toggle="modal" data-target="#myModal"><i class="icon-chevron-right"></i>Cameras (100) </a></li>
+                                <li><a href="@Url.Content("~/Foundproducts/Index")"><i class="icon-chevron-right"></i>Computers, Tablets & laptop (30)</a></li>
+                                <li><a href="@Url.Content("~/Foundproducts/Index")"><i class="icon-chevron-right"></i>Mobile Phone (80)</a></li>
+                                <li><a href="@Url.Content("~/Foundproducts/Index")"><i class="icon-chevron-right"></i>Sound & Vision (15)</a></li>
+
+                            </ul>
+
+                        </li>
+
+                        <li class="subMenu">
+                            <a> PET[840] </a>
+                            <ul style="display:none">
+                                <li><a href="products.html"><i class="icon-chevron-right"></i>Cat (45)</a></li>
+                                <li><a href="products.html"><i class="icon-chevron-right"></i>Dog (8)</a></li>
+                                <li><a href="products.html"><i class="icon-chevron-right"></i>Rabbit (5)</a></li>
+
+                            </ul>
+                        </li>
+                        <li class="subMenu">
+                            <a>DOCUMENT [1000]</a>
+                            <ul style="display:none">
+                                <li><a href="products.html"><i class="icon-chevron-right"></i>Certificate (35)</a></li>
+                                <li><a href="products.html"><i class="icon-chevron-right"></i>NID Card (8)</a></li>
+                                <li><a href="products.html"><i class="icon-chevron-right"></i>Passport (5)</a></li>
+                                <li><a href="products.html"><i class="icon-chevron-right"></i>Driving License  (45)</a></li>
+
+                            </ul>
+                        </li>
+                        <li><a href="products.html">HUMAN [18]</a></li>
+                        <li class="subMenu">
+                            <a>OTHERS[58]</a>
+                            <ul style="display:none">
+                                <li><a href="products.html"><i class="icon-chevron-right"></i>Music Instruments(35)</a></li>
+                                <li><a href="products.html"><i class="icon-chevron-right"></i>Sports Equipments (8)</a></li>
+                                <li><a href="products.html"><i class="icon-chevron-right"></i>Jwelary (5)</a></li>
+
+                            </ul>
+
+
+                        </li>
+                    </ul>
+
+                    <br />
+                    <br />
+                    <br />
+                    <ul id="sideManu" class="nav nav-tabs nav-stacked">
+
+                        <li class="subMenu open">
+                            <a> LOCATION</a>
+                            <ul>
+                                <li><a class="active" href="@Url.Content("~/Foundproducts/Index")"><i class="icon-chevron-right"></i>DHAKA </a></li>
+                                <li><a href="@Url.Content("~/Foundproducts/Index")"><i class="icon-chevron-right"></i>KHULNA </a></li>
+                                <li><a href="@Url.Content("~/Foundproducts/Index")"><i class="icon-chevron-right"></i>BARISAL(80)</a></li>
+                                <li><a href="@Url.Content("~/Foundproducts/Index")"><i class="icon-chevron-right"></i>CHITTAGONG (15)</a></li>
+                                <li><a href="@Url.Content("~/Foundproducts/Index")"><i class="icon-chevron-right"></i>RAJSHAHI (15)</a></li>
+                                <li><a href="@Url.Content("~/Foundproducts/Index")"><i class="icon-chevron-right"></i>RANGPUR(15)</a></li>
+                                <li><a href="@Url.Content("~/Foundproducts/Index")"><i class="icon-chevron-right"></i>SHYlET (15)</a></li>
+
+                            </ul>
+                        </li>
+                    </ul>
+
+
+                    <br />
+                    <br />
+                    <div class="thumbnail">
+                        <img src="@Url.Content("~/Content/mytemplate/themes/images/products/panasonic.jpg")" alt="Bootshop panasonoc New camera" />
+                        <div class="caption">
+                            <h5>Panasonic</h5>
+                            <h4 style="text-align:center"><a class="btn" href="product_details.html"> <i class="icon-zoom-in"></i></a> <a class="btn" href="#">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">$222.00</a></h4>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="thumbnail">
+                        <img src="@Url.Content("~/Content/mytemplate/themes/images/products/kindle.png")" title="Bootshop New Kindel" alt="Bootshop Kindel">
+                        <div class="caption">
+                            <h5>Kindle</h5>
+                            <h4 style="text-align:center"><a class="btn" href="product_details.html"> <i class="icon-zoom-in"></i></a> <a class="btn" href="#">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#"></a></h4>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="thumbnail">
+                        <img src="@Url.Content("~/Content/mytemplate/themes/images/payment_methods.png")" title="Bootshop Payment Methods" alt="Payments Methods">
+                        <div class="caption">
+                            <h5>Payment Methods</h5>
+                        </div>
+                    </div>
+                </div>
+                <!-- Sidebar end=============================================== -->
+                <div class="col-md-9">
+
+                    <div class="well well-small">
+                        <h4> Founded Products <small class="pull-right"> @Html.ActionLink("View All", "Index", "FoundProducts", null, new { @class = "btn btn-primary btn-sm" }) </small></h4>
+
+
+
+
+
+                        <div class="row-fluid">
+                            <div id="featured" class="carousel slide">
+                                <div class="carousel-inner">
+                                    <div class="item active">
+                                        <ul class="thumbnails">
+                                            @if (Model != null)
+                                            {
+                                                foreach (var Topfound in Model.found)
+                                                {
+
+                                                    <li class="span3">
+                                                        <div class="thumbnail">
+                                                            <i class="tag"></i>
+                                                            <a href="product_details.html"><img src="@Url.Content(Topfound.Image)" alt=""></a>
+                                                            <div class="caption">
+                                                                <h4>
+                                                                    @Html.DisplayFor(modelItem => Topfound.Title)
+                                                                </h4>
+                                                                <h4><a class="btn" href="product_details.html">VIEW</a> <span class="pull-right"></span></h4>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                }
+                                            }
+                                            </ul>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <h4> Losted Products <small class="pull-right"> @Html.ActionLink("View All", "Index", "LostProducts", null, new { @class = "btn btn-primary btn-sm" }) </small></h4>
+                    <ul class="thumbnails">
+                        @if (Model != null)
+                        {
+                            foreach (var Toplost in Model.lost)
+                            {
+                                <li class="span3">
+                                    <div class="thumbnail">
+                                        <i class="tag"></i>
+                                        <a href="product_details.html"><img src="@Url.Content(Toplost.Image)" alt=""></a>
+                                        <div class="caption">
+                                            <h4>
+                                                @Html.DisplayFor(modelItem => Toplost.Title)
+                                            </h4>
+                                            <h4><a class="btn" href="product_details.html">VIEW</a> <span class="pull-right"></span></h4>
+                                        </div>
+                                    </div>
+                                </li>
+                            }
+                        }
+                        </ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

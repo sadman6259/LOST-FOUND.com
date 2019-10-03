@@ -1,0 +1,1084 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{E362E95D-4774-4568-8CCE-0477B025E96C}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>LOF</RootNamespace>
+    <AssemblyName>LOF</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <Use64BitIISExpress />
+    <UseGlobalApplicationHostFile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.0.0\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.0.0\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.1\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.0.0\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.0.0\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.0.0\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.0.0\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <Private>True</Private>
+      <HintPath>..\packages\Newtonsoft.Json.5.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.1.0.0\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.1.0.0\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.1.0.0\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin">
+      <HintPath>..\packages\Microsoft.Owin.2.0.0\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.2.0.0\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security">
+      <HintPath>..\packages\Microsoft.Owin.Security.2.0.0\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Facebook">
+      <HintPath>..\packages\Microsoft.Owin.Security.Facebook.2.0.0\lib\net45\Microsoft.Owin.Security.Facebook.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.2.0.0\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.2.0.0\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Google">
+      <HintPath>..\packages\Microsoft.Owin.Security.Google.2.0.0\lib\net45\Microsoft.Owin.Security.Google.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Twitter">
+      <HintPath>..\packages\Microsoft.Owin.Security.Twitter.2.0.0\lib\net45\Microsoft.Owin.Security.Twitter.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.MicrosoftAccount">
+      <HintPath>..\packages\Microsoft.Owin.Security.MicrosoftAccount.2.0.0\lib\net45\Microsoft.Owin.Security.MicrosoftAccount.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AdminApprovalTbl.cs">
+      <DependentUpon>Model2.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AdminLoginTbl.cs">
+      <DependentUpon>Model2.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AllProductsTbl.cs">
+      <DependentUpon>Model2.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Category.cs">
+      <DependentUpon>Model2.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminApprovalController.cs" />
+    <Compile Include="Controllers\AllproductsController.cs" />
+    <Compile Include="Controllers\FoundProductsController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\LostProductsController.cs" />
+    <Compile Include="Controllers\RegisterController.cs" />
+    <Compile Include="Controllers\TemplateController.cs" />
+    <Compile Include="Foundtbl.cs">
+      <DependentUpon>Model2.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Location.cs">
+      <DependentUpon>Model2.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LoginTbl.cs">
+      <DependentUpon>Model2.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Losttbl.cs">
+      <DependentUpon>Model2.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model2.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model2.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model2.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model2.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model2.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model2.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AuthAttribute.cs" />
+    <Compile Include="Models\AuthenticationSampleFilter.cs" />
+    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="RegisterTbl.cs">
+      <DependentUpon>Model2.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Startup.cs" />
+    <Compile Include="SubCategory.cs">
+      <DependentUpon>Model2.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubLocation.cs">
+      <DependentUpon>Model2.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Topfoundtbl.cs">
+      <DependentUpon>Model2.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TopLosttbl.cs">
+      <DependentUpon>Model2.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\CategorySubCategoryVM.cs" />
+    <Compile Include="ViewModel\CommonIndex.cs" />
+    <Compile Include="ViewModel\Home.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\cssmenu\index.html" />
+    <Content Include="Content\cssmenu\styles.css" />
+    <Content Include="Content\GoogleNexusWebsiteMenu\css\component.css" />
+    <Content Include="Content\GoogleNexusWebsiteMenu\css\demo.css" />
+    <Content Include="Content\GoogleNexusWebsiteMenu\css\normalize.css" />
+    <Content Include="Content\GoogleNexusWebsiteMenu\fonts\codropsicons\codropsicons.svg" />
+    <Content Include="Content\GoogleNexusWebsiteMenu\fonts\codropsicons\license.txt" />
+    <Content Include="Content\GoogleNexusWebsiteMenu\fonts\ecoicons\ecoicons.dev.svg" />
+    <Content Include="Content\GoogleNexusWebsiteMenu\fonts\ecoicons\ecoicons.svg" />
+    <Content Include="Content\GoogleNexusWebsiteMenu\fonts\ecoicons\license.txt" />
+    <Content Include="Content\GoogleNexusWebsiteMenu\fonts\ecoicons\Read Me.txt" />
+    <Content Include="Content\GoogleNexusWebsiteMenu\index.html" />
+    <Content Include="Content\GoogleNexusWebsiteMenu\js\classie.js" />
+    <Content Include="Content\GoogleNexusWebsiteMenu\js\gnmenu.js" />
+    <Content Include="Content\GoogleNexusWebsiteMenu\js\modernizr.custom.js" />
+    <Content Include="Content\Login\css\main.css" />
+    <Content Include="Content\Login\css\util.css" />
+    <Content Include="Content\Login\fonts\font-awesome-4.7.0\css\font-awesome.css" />
+    <Content Include="Content\Login\fonts\font-awesome-4.7.0\css\font-awesome.min.css" />
+    <Content Include="Content\Login\fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\Login\fonts\font-awesome-4.7.0\HELP-US-OUT.txt" />
+    <Content Include="Content\Login\fonts\iconic\css\material-design-iconic-font.css" />
+    <Content Include="Content\Login\fonts\iconic\css\material-design-iconic-font.min.css" />
+    <Content Include="Content\Login\fonts\iconic\fonts\Material-Design-Iconic-Font.svg" />
+    <Content Include="Content\Login\fonts\JosefinSans\OFL.txt" />
+    <Content Include="Content\Login\fonts\source-sans-pro\OFL.txt" />
+    <Content Include="Content\Login\images\bg-01.jpg" />
+    <Content Include="Content\Login\images\icons\favicon.ico" />
+    <Content Include="Content\Login\images\icons\icon-google.png" />
+    <Content Include="Content\Login\images\icons\map-marker.png" />
+    <Content Include="Content\Login\index.html" />
+    <Content Include="Content\Login\js\main.js" />
+    <Content Include="Content\Login\js\map-custom.js" />
+    <Content Include="Content\Login\vendor\animate\animate.css" />
+    <Content Include="Content\Login\vendor\animsition\css\animsition.css" />
+    <Content Include="Content\Login\vendor\animsition\css\animsition.min.css" />
+    <Content Include="Content\Login\vendor\animsition\js\animsition.js" />
+    <Content Include="Content\Login\vendor\animsition\js\animsition.min.js" />
+    <Content Include="Content\Login\vendor\bootstrap\css\bootstrap-grid.css" />
+    <Content Include="Content\Login\vendor\bootstrap\css\bootstrap-grid.min.css" />
+    <Content Include="Content\Login\vendor\bootstrap\css\bootstrap-reboot.css" />
+    <Content Include="Content\Login\vendor\bootstrap\css\bootstrap-reboot.min.css" />
+    <Content Include="Content\Login\vendor\bootstrap\css\bootstrap.css" />
+    <Content Include="Content\Login\vendor\bootstrap\css\bootstrap.min.css" />
+    <Content Include="Content\Login\vendor\bootstrap\js\bootstrap.js" />
+    <Content Include="Content\Login\vendor\bootstrap\js\bootstrap.min.js" />
+    <Content Include="Content\Login\vendor\bootstrap\js\popper.js" />
+    <Content Include="Content\Login\vendor\bootstrap\js\popper.min.js" />
+    <Content Include="Content\Login\vendor\bootstrap\js\tooltip.js" />
+    <Content Include="Content\Login\vendor\countdowntime\countdowntime.js" />
+    <Content Include="Content\Login\vendor\css-hamburgers\hamburgers.css" />
+    <Content Include="Content\Login\vendor\css-hamburgers\hamburgers.min.css" />
+    <Content Include="Content\Login\vendor\daterangepicker\daterangepicker.css" />
+    <Content Include="Content\Login\vendor\daterangepicker\daterangepicker.js" />
+    <Content Include="Content\Login\vendor\daterangepicker\moment.js" />
+    <Content Include="Content\Login\vendor\daterangepicker\moment.min.js" />
+    <Content Include="Content\Login\vendor\jquery\jquery-3.2.1.min.js" />
+    <Content Include="Content\Login\vendor\perfect-scrollbar\perfect-scrollbar.css" />
+    <Content Include="Content\Login\vendor\perfect-scrollbar\perfect-scrollbar.min.js" />
+    <Content Include="Content\Login\vendor\select2\select2.css" />
+    <Content Include="Content\Login\vendor\select2\select2.js" />
+    <Content Include="Content\Login\vendor\select2\select2.min.css" />
+    <Content Include="Content\Login\vendor\select2\select2.min.js" />
+    <Content Include="Content\mytemplate\bootstrap\css\bootstrap-responsive.min.css" />
+    <Content Include="Content\mytemplate\bootstrap\css\bootstrap.min.css" />
+    <Content Include="Content\mytemplate\bootstrap\img\glyphicons-halflings-white.png" />
+    <Content Include="Content\mytemplate\bootstrap\img\glyphicons-halflings.png" />
+    <Content Include="Content\mytemplate\bootstrap\js\bootstrap.min.js" />
+    <Content Include="Content\mytemplate\images\1.jpg" />
+    <Content Include="Content\mytemplate\images\5.jpg" />
+    <Content Include="Content\mytemplate\images\a1.jpg" />
+    <Content Include="Content\mytemplate\images\a2.jpg" />
+    <Content Include="Content\mytemplate\images\b1.jpg" />
+    <Content Include="Content\mytemplate\images\b2.jpg" />
+    <Content Include="Content\mytemplate\images\b3.jpg" />
+    <Content Include="Content\mytemplate\images\b4.jpg" />
+    <Content Include="Content\mytemplate\images\b5.jpg" />
+    <Content Include="Content\mytemplate\images\b6.jpg" />
+    <Content Include="Content\mytemplate\images\b7.jpg" />
+    <Content Include="Content\mytemplate\images\bb1.jpg" />
+    <Content Include="Content\mytemplate\images\bb2.jpg" />
+    <Content Include="Content\mytemplate\images\bb3.jpg" />
+    <Content Include="Content\mytemplate\images\bb4.jpg" />
+    <Content Include="Content\mytemplate\images\bb5.jpg" />
+    <Content Include="Content\mytemplate\images\bb6.jpg" />
+    <Content Include="Content\mytemplate\images\bb7.jpg" />
+    <Content Include="Content\mytemplate\images\bbb1.jpg" />
+    <Content Include="Content\mytemplate\images\bbb2.jpg" />
+    <Content Include="Content\mytemplate\images\bbb3.jpg" />
+    <Content Include="Content\mytemplate\images\bbbb1.jpg" />
+    <Content Include="Content\mytemplate\images\bg1.jpg" />
+    <Content Include="Content\mytemplate\images\blog1.jpg" />
+    <Content Include="Content\mytemplate\images\blog2.jpg" />
+    <Content Include="Content\mytemplate\images\blog3.jpg" />
+    <Content Include="Content\mytemplate\images\m1.jpg" />
+    <Content Include="Content\mytemplate\images\m2.jpg" />
+    <Content Include="Content\mytemplate\images\m3.jpg" />
+    <Content Include="Content\mytemplate\images\s1.jpg" />
+    <Content Include="Content\mytemplate\images\s2.jpg" />
+    <Content Include="Content\mytemplate\images\s3.jpg" />
+    <Content Include="Content\mytemplate\images\s4.jpg" />
+    <Content Include="Content\mytemplate\images\s5.jpg" />
+    <Content Include="Content\mytemplate\images\s6.jpg" />
+    <Content Include="Content\mytemplate\images\s7.jpg" />
+    <Content Include="Content\mytemplate\images\t1.jpg" />
+    <Content Include="Content\mytemplate\images\t2.jpg" />
+    <Content Include="Content\mytemplate\images\t3.jpg" />
+    <Content Include="Content\mytemplate\images\t4.jpg" />
+    <Content Include="Content\mytemplate\images\te1.jpg" />
+    <Content Include="Content\mytemplate\images\te2.jpg" />
+    <Content Include="Content\mytemplate\images\te3.jpg" />
+    <Content Include="Content\mytemplate\themes\amelia\bootstrap.css" />
+    <Content Include="Content\mytemplate\themes\amelia\bootstrap.min.css" />
+    <Content Include="Content\mytemplate\themes\bootshop\bootstrap.min.css" />
+    <Content Include="Content\mytemplate\themes\businessltd\bootstrap.min.css" />
+    <Content Include="Content\mytemplate\themes\cerulean\bootstrap.min.css" />
+    <Content Include="Content\mytemplate\themes\css\base.css" />
+    <Content Include="Content\mytemplate\themes\css\bootstrap-responsive.min.css" />
+    <Content Include="Content\mytemplate\themes\css\font-awesome-ie7.css" />
+    <Content Include="Content\mytemplate\themes\css\font-awesome.css" />
+    <Content Include="Content\mytemplate\themes\cyborg\bootstrap.min.css" />
+    <Content Include="Content\mytemplate\themes\font\fontawesome-webfont.svg" />
+    <Content Include="Content\mytemplate\themes\images\carousel\1.png" />
+    <Content Include="Content\mytemplate\themes\images\carousel\2.png" />
+    <Content Include="Content\mytemplate\themes\images\carousel\3.png" />
+    <Content Include="Content\mytemplate\themes\images\carousel\4.png" />
+    <Content Include="Content\mytemplate\themes\images\carousel\5.png" />
+    <Content Include="Content\mytemplate\themes\images\carousel\6.png" />
+    <Content Include="Content\mytemplate\themes\images\carousel\7.png" />
+    <Content Include="Content\mytemplate\themes\images\facebook.png" />
+    <Content Include="Content\mytemplate\themes\images\headerRepeat.png" />
+    <Content Include="Content\mytemplate\themes\images\ico-cart.png" />
+    <Content Include="Content\mytemplate\themes\images\ico\apple-touch-icon-114-precomposed.png" />
+    <Content Include="Content\mytemplate\themes\images\ico\apple-touch-icon-144-precomposed.png" />
+    <Content Include="Content\mytemplate\themes\images\ico\apple-touch-icon-57-precomposed.png" />
+    <Content Include="Content\mytemplate\themes\images\ico\apple-touch-icon-72-precomposed.png" />
+    <Content Include="Content\mytemplate\themes\images\ico\favicon.ico" />
+    <Content Include="Content\mytemplate\themes\images\lightbox\Close.png" />
+    <Content Include="Content\mytemplate\themes\images\lightbox\lightbox-blank.gif" />
+    <Content Include="Content\mytemplate\themes\images\lightbox\lightbox-btn-close.gif" />
+    <Content Include="Content\mytemplate\themes\images\lightbox\lightbox-btn-next.gif" />
+    <Content Include="Content\mytemplate\themes\images\lightbox\lightbox-btn-prev.gif" />
+    <Content Include="Content\mytemplate\themes\images\lightbox\lightbox-ico-loading.gif" />
+    <Content Include="Content\mytemplate\themes\images\logo.png" />
+    <Content Include="Content\mytemplate\themes\images\new.png" />
+    <Content Include="Content\mytemplate\themes\images\payment_methods.png" />
+    <Content Include="Content\mytemplate\themes\images\products\1.jpg" />
+    <Content Include="Content\mytemplate\themes\images\products\10.jpg" />
+    <Content Include="Content\mytemplate\themes\images\products\11.jpg" />
+    <Content Include="Content\mytemplate\themes\images\products\12.jpg" />
+    <Content Include="Content\mytemplate\themes\images\products\13.jpg" />
+    <Content Include="Content\mytemplate\themes\images\products\2.jpg" />
+    <Content Include="Content\mytemplate\themes\images\products\3.jpg" />
+    <Content Include="Content\mytemplate\themes\images\products\4.jpg" />
+    <Content Include="Content\mytemplate\themes\images\products\5.jpg" />
+    <Content Include="Content\mytemplate\themes\images\products\6.jpg" />
+    <Content Include="Content\mytemplate\themes\images\products\7.jpg" />
+    <Content Include="Content\mytemplate\themes\images\products\8.jpg" />
+    <Content Include="Content\mytemplate\themes\images\products\9.jpg" />
+    <Content Include="Content\mytemplate\themes\images\products\b1.jpg" />
+    <Content Include="Content\mytemplate\themes\images\products\b2.jpg" />
+    <Content Include="Content\mytemplate\themes\images\products\b3.jpg" />
+    <Content Include="Content\mytemplate\themes\images\products\b4.jpg" />
+    <Content Include="Content\mytemplate\themes\images\products\kindle.png" />
+    <Content Include="Content\mytemplate\themes\images\products\large\3.jpg" />
+    <Content Include="Content\mytemplate\themes\images\products\large\f1.jpg" />
+    <Content Include="Content\mytemplate\themes\images\products\large\f2.jpg" />
+    <Content Include="Content\mytemplate\themes\images\products\large\f3.jpg" />
+    <Content Include="Content\mytemplate\themes\images\products\panasonic.jpg" />
+    <Content Include="Content\mytemplate\themes\images\search.png" />
+    <Content Include="Content\mytemplate\themes\images\tabRepeatInactive.png" />
+    <Content Include="Content\mytemplate\themes\images\twitter.png" />
+    <Content Include="Content\mytemplate\themes\images\youtube.png" />
+    <Content Include="Content\mytemplate\themes\img\glyphicons-halflings-white.png" />
+    <Content Include="Content\mytemplate\themes\img\glyphicons-halflings.png" />
+    <Content Include="Content\mytemplate\themes\journal\bootstrap.min.css" />
+    <Content Include="Content\mytemplate\themes\js\bootshop.js" />
+    <Content Include="Content\mytemplate\themes\js\bootstrap.min.js" />
+    <Content Include="Content\mytemplate\themes\js\google-code-prettify\prettify.css" />
+    <Content Include="Content\mytemplate\themes\js\google-code-prettify\prettify.js" />
+    <Content Include="Content\mytemplate\themes\js\jquery.js" />
+    <Content Include="Content\mytemplate\themes\js\jquery.lightbox-0.5.js" />
+    <Content Include="Content\mytemplate\themes\js\less.js" />
+    <Content Include="Content\mytemplate\themes\readable\bootstrap.min.css" />
+    <Content Include="Content\mytemplate\themes\simplex\bootstrap.min.css" />
+    <Content Include="Content\mytemplate\themes\slate\bootstrap.min.css" />
+    <Content Include="Content\mytemplate\themes\spacelab\bootstrap.min.css" />
+    <Content Include="Content\mytemplate\themes\spruce\bootstrap.css" />
+    <Content Include="Content\mytemplate\themes\spruce\bootstrap.min.css" />
+    <Content Include="Content\mytemplate\themes\superhero\bootstrap.min.css" />
+    <Content Include="Content\mytemplate\themes\switch\images\clr\amelia.png" />
+    <Content Include="Content\mytemplate\themes\switch\images\clr\bootshop.png" />
+    <Content Include="Content\mytemplate\themes\switch\images\clr\businessltd.png" />
+    <Content Include="Content\mytemplate\themes\switch\images\clr\cerulean.png" />
+    <Content Include="Content\mytemplate\themes\switch\images\clr\cyborg.png" />
+    <Content Include="Content\mytemplate\themes\switch\images\clr\journal.png" />
+    <Content Include="Content\mytemplate\themes\switch\images\clr\readable.png" />
+    <Content Include="Content\mytemplate\themes\switch\images\clr\simplex.png" />
+    <Content Include="Content\mytemplate\themes\switch\images\clr\slate.png" />
+    <Content Include="Content\mytemplate\themes\switch\images\clr\spacelab.png" />
+    <Content Include="Content\mytemplate\themes\switch\images\clr\spruce.png" />
+    <Content Include="Content\mytemplate\themes\switch\images\clr\superhero.png" />
+    <Content Include="Content\mytemplate\themes\switch\images\clr\united.png" />
+    <Content Include="Content\mytemplate\themes\switch\images\hideme.png" />
+    <Content Include="Content\mytemplate\themes\switch\images\pattern\pattern1.png" />
+    <Content Include="Content\mytemplate\themes\switch\images\pattern\pattern10.png" />
+    <Content Include="Content\mytemplate\themes\switch\images\pattern\pattern11.png" />
+    <Content Include="Content\mytemplate\themes\switch\images\pattern\pattern12.png" />
+    <Content Include="Content\mytemplate\themes\switch\images\pattern\pattern13.png" />
+    <Content Include="Content\mytemplate\themes\switch\images\pattern\pattern14.png" />
+    <Content Include="Content\mytemplate\themes\switch\images\pattern\pattern15.png" />
+    <Content Include="Content\mytemplate\themes\switch\images\pattern\pattern16.png" />
+    <Content Include="Content\mytemplate\themes\switch\images\pattern\pattern16~.png" />
+    <Content Include="Content\mytemplate\themes\switch\images\pattern\pattern17.png" />
+    <Content Include="Content\mytemplate\themes\switch\images\pattern\pattern17~.png" />
+    <Content Include="Content\mytemplate\themes\switch\images\pattern\pattern18.png" />
+    <Content Include="Content\mytemplate\themes\switch\images\pattern\pattern19.png" />
+    <Content Include="Content\mytemplate\themes\switch\images\pattern\pattern19~.png" />
+    <Content Include="Content\mytemplate\themes\switch\images\pattern\pattern2.png" />
+    <Content Include="Content\mytemplate\themes\switch\images\pattern\pattern20.png" />
+    <Content Include="Content\mytemplate\themes\switch\images\pattern\pattern20~.png" />
+    <Content Include="Content\mytemplate\themes\switch\images\pattern\pattern3.png" />
+    <Content Include="Content\mytemplate\themes\switch\images\pattern\pattern4.png" />
+    <Content Include="Content\mytemplate\themes\switch\images\pattern\pattern5.png" />
+    <Content Include="Content\mytemplate\themes\switch\images\pattern\pattern6.png" />
+    <Content Include="Content\mytemplate\themes\switch\images\pattern\pattern7.png" />
+    <Content Include="Content\mytemplate\themes\switch\images\pattern\pattern8.png" />
+    <Content Include="Content\mytemplate\themes\switch\images\pattern\pattern9.png" />
+    <Content Include="Content\mytemplate\themes\switch\images\styleTgl.png" />
+    <Content Include="Content\mytemplate\themes\switch\theamswitcher.js" />
+    <Content Include="Content\mytemplate\themes\switch\themeswitch.css" />
+    <Content Include="Content\mytemplate\themes\united\bootstrap.min.css" />
+    <Content Include="Content\mytemplate\themes\web-1012467_960_720.jpg" />
+    <Content Include="Content\mytemplate\white-2484120_960_720.png" />
+    <Content Include="Content\PagedList.css" />
+    <Content Include="Content\regform\css\main.css" />
+    <Content Include="Content\regform\index.html" />
+    <Content Include="Content\regform\js\global.js" />
+    <Content Include="Content\regform\readme.txt" />
+    <Content Include="Content\regform\vendor\datepicker\daterangepicker.css" />
+    <Content Include="Content\regform\vendor\datepicker\daterangepicker.js" />
+    <Content Include="Content\regform\vendor\datepicker\moment.min.js" />
+    <Content Include="Content\regform\vendor\font-awesome-4.7\css\font-awesome.css" />
+    <Content Include="Content\regform\vendor\font-awesome-4.7\css\font-awesome.min.css" />
+    <Content Include="Content\regform\vendor\font-awesome-4.7\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\regform\vendor\font-awesome-4.7\HELP-US-OUT.txt" />
+    <Content Include="Content\regform\vendor\jquery\jquery.js" />
+    <Content Include="Content\regform\vendor\jquery\jquery.min.js" />
+    <Content Include="Content\regform\vendor\mdi-font\css\material-design-iconic-font.css" />
+    <Content Include="Content\regform\vendor\mdi-font\css\material-design-iconic-font.min.css" />
+    <Content Include="Content\regform\vendor\mdi-font\fonts\Material-Design-Iconic-Font.svg" />
+    <Content Include="Content\regform\vendor\select2\select2.min.css" />
+    <Content Include="Content\regform\vendor\select2\select2.min.js" />
+    <Content Include="Content\registrationform\css\style.css" />
+    <Content Include="Content\registrationform\fonts\material-icon\css\material-design-iconic-font.css" />
+    <Content Include="Content\registrationform\fonts\material-icon\css\material-design-iconic-font.min.css" />
+    <Content Include="Content\registrationform\fonts\material-icon\fonts\Material-Design-Iconic-Font.svg" />
+    <Content Include="Content\registrationform\fonts\poppins\poppins-v5-latin-300.svg" />
+    <Content Include="Content\registrationform\fonts\poppins\poppins-v5-latin-300italic.svg" />
+    <Content Include="Content\registrationform\fonts\poppins\poppins-v5-latin-500.svg" />
+    <Content Include="Content\registrationform\fonts\poppins\poppins-v5-latin-500italic.svg" />
+    <Content Include="Content\registrationform\fonts\poppins\poppins-v5-latin-600.svg" />
+    <Content Include="Content\registrationform\fonts\poppins\poppins-v5-latin-700.svg" />
+    <Content Include="Content\registrationform\fonts\poppins\poppins-v5-latin-700italic.svg" />
+    <Content Include="Content\registrationform\fonts\poppins\poppins-v5-latin-800.svg" />
+    <Content Include="Content\registrationform\fonts\poppins\poppins-v5-latin-800italic.svg" />
+    <Content Include="Content\registrationform\fonts\poppins\poppins-v5-latin-900.svg" />
+    <Content Include="Content\registrationform\fonts\poppins\poppins-v5-latin-italic.svg" />
+    <Content Include="Content\registrationform\fonts\poppins\poppins-v5-latin-regular.svg" />
+    <Content Include="Content\registrationform\fonts\poppins\roboto-condensed-v16-latin-700.svg" />
+    <Content Include="Content\registrationform\fonts\poppins\roboto-condensed-v16-latin-700italic.svg" />
+    <Content Include="Content\registrationform\fonts\poppins\roboto-condensed-v16-latin-italic.svg" />
+    <Content Include="Content\registrationform\fonts\poppins\roboto-condensed-v16-latin-regular.svg" />
+    <Content Include="Content\registrationform\images\form-img.jpg" />
+    <Content Include="Content\registrationform\index.html" />
+    <Content Include="Content\registrationform\js\main.js" />
+    <Content Include="Content\registrationform\readme.txt" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\additional-methods.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\additional-methods.min.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\jquery.validate.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\jquery.validate.min.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_ar.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_ar.min.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_az.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_az.min.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_bg.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_bg.min.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_bn_BD.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_bn_BD.min.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_ca.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_ca.min.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_cs.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_cs.min.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_da.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_da.min.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_de.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_de.min.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_el.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_el.min.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_es.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_es.min.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_es_AR.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_es_AR.min.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_es_PE.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_es_PE.min.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_et.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_et.min.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_eu.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_eu.min.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_fa.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_fa.min.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_fi.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_fi.min.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_fr.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_fr.min.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_ge.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_ge.min.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_gl.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_gl.min.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_he.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_he.min.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_hr.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_hr.min.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_hu.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_hu.min.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_hy_AM.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_hy_AM.min.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_id.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_id.min.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_is.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_is.min.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_it.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_it.min.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_ja.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_ja.min.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_ka.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_ka.min.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_kk.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_kk.min.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_ko.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_ko.min.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_lt.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_lt.min.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_lv.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_lv.min.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_mk.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_mk.min.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_my.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_my.min.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_nl.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_nl.min.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_no.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_no.min.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_pl.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_pl.min.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_pt_BR.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_pt_BR.min.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_pt_PT.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_pt_PT.min.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_ro.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_ro.min.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_ru.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_ru.min.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_sd.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_sd.min.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_si.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_si.min.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_sk.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_sk.min.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_sl.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_sl.min.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_sr.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_sr.min.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_sr_lat.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_sr_lat.min.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_sv.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_sv.min.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_th.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_th.min.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_tj.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_tj.min.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_tr.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_tr.min.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_uk.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_uk.min.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_ur.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_ur.min.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_vi.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_vi.min.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_zh.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_zh.min.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_zh_TW.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\messages_zh_TW.min.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\methods_de.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\methods_de.min.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\methods_es_CL.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\methods_es_CL.min.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\methods_fi.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\methods_fi.min.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\methods_nl.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\methods_nl.min.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\methods_pt.js" />
+    <Content Include="Content\registrationform\vendor\jquery-validation\dist\localization\methods_pt.min.js" />
+    <Content Include="Content\registrationform\vendor\jquery\jquery-ui.min.js" />
+    <Content Include="Content\registrationform\vendor\jquery\jquery.min.js" />
+    <Content Include="Content\registrationform\vendor\nouislider\nouislider.min.css" />
+    <Content Include="Content\registrationform\vendor\nouislider\nouislider.min.js" />
+    <Content Include="Content\registrationform\vendor\wnumb\wNumb.js" />
+    <Content Include="Content\Vivo-Y83.jpg" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Model2.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model2.edmx</DependentUpon>
+      <LastGenOutput>Model2.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Model2.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model2.edmx</DependentUpon>
+      <LastGenOutput>Model2.cs</LastGenOutput>
+    </Content>
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Content\mytemplate\themes\font\fontawesome-webfont.eot" />
+    <Content Include="Content\mytemplate\themes\font\fontawesome-webfont.ttf" />
+    <Content Include="Content\mytemplate\themes\font\fontawesome-webfont.woff" />
+    <Content Include="Content\mytemplate\themes\font\museo_slab_300-webfont.eot" />
+    <Content Include="Content\mytemplate\themes\font\museo_slab_300-webfont.ttf" />
+    <Content Include="Content\mytemplate\themes\font\museo_slab_500-webfont.eot" />
+    <Content Include="Content\mytemplate\themes\font\museo_slab_500-webfont.ttf" />
+    <Content Include="Content\mytemplate\themes\font\proximanova-webfont.eot" />
+    <Content Include="Content\mytemplate\themes\font\proximanova-webfont.ttf" />
+    <Content Include="Content\mytemplate\themes\less\accordion.less" />
+    <Content Include="Content\mytemplate\themes\less\alerts.less" />
+    <Content Include="Content\mytemplate\themes\less\amelia.less" />
+    <Content Include="Content\mytemplate\themes\less\amelia\bootswatch.less" />
+    <Content Include="Content\mytemplate\themes\less\amelia\variables.less" />
+    <Content Include="Content\mytemplate\themes\less\bootshop.less" />
+    <Content Include="Content\mytemplate\themes\less\bootshop\main.less" />
+    <Content Include="Content\mytemplate\themes\less\bootshop\variables.less" />
+    <Content Include="Content\mytemplate\themes\less\bootstrap.less" />
+    <Content Include="Content\mytemplate\themes\less\breadcrumbs.less" />
+    <Content Include="Content\mytemplate\themes\less\button-groups.less" />
+    <Content Include="Content\mytemplate\themes\less\buttons.less" />
+    <Content Include="Content\mytemplate\themes\less\carousel.less" />
+    <Content Include="Content\mytemplate\themes\less\classified.less" />
+    <Content Include="Content\mytemplate\themes\less\close.less" />
+    <Content Include="Content\mytemplate\themes\less\code.less" />
+    <Content Include="Content\mytemplate\themes\less\component-animations.less" />
+    <Content Include="Content\mytemplate\themes\less\dropdowns.less" />
+    <Content Include="Content\mytemplate\themes\less\font-awesome-ie7.less" />
+    <Content Include="Content\mytemplate\themes\less\font-awesome.less" />
+    <Content Include="Content\mytemplate\themes\less\forms.less" />
+    <Content Include="Content\mytemplate\themes\less\grid.less" />
+    <Content Include="Content\mytemplate\themes\less\hero-unit.less" />
+    <Content Include="Content\mytemplate\themes\less\labels-badges.less" />
+    <Content Include="Content\mytemplate\themes\less\layouts.less" />
+    <Content Include="Content\mytemplate\themes\less\mixins.less" />
+    <Content Include="Content\mytemplate\themes\less\modals.less" />
+    <Content Include="Content\mytemplate\themes\less\navbar.less" />
+    <Content Include="Content\mytemplate\themes\less\navs.less" />
+    <Content Include="Content\mytemplate\themes\less\pager.less" />
+    <Content Include="Content\mytemplate\themes\less\pagination.less" />
+    <Content Include="Content\mytemplate\themes\less\popovers.less" />
+    <Content Include="Content\mytemplate\themes\less\progress-bars.less" />
+    <Content Include="Content\mytemplate\themes\less\reset.less" />
+    <Content Include="Content\mytemplate\themes\less\responsive-1200px-min.less" />
+    <Content Include="Content\mytemplate\themes\less\responsive-767px-max.less" />
+    <Content Include="Content\mytemplate\themes\less\responsive-768px-979px.less" />
+    <Content Include="Content\mytemplate\themes\less\responsive-navbar.less" />
+    <Content Include="Content\mytemplate\themes\less\responsive-utilities.less" />
+    <Content Include="Content\mytemplate\themes\less\responsive.less" />
+    <Content Include="Content\mytemplate\themes\less\scaffolding.less" />
+    <Content Include="Content\mytemplate\themes\less\simplex.less" />
+    <Content Include="Content\mytemplate\themes\less\simplex\bootswatch.less" />
+    <Content Include="Content\mytemplate\themes\less\simplex\variables.less" />
+    <Content Include="Content\mytemplate\themes\less\sprites.less" />
+    <Content Include="Content\mytemplate\themes\less\tables.less" />
+    <Content Include="Content\mytemplate\themes\less\thumbnails.less" />
+    <Content Include="Content\mytemplate\themes\less\tooltip.less" />
+    <Content Include="Content\mytemplate\themes\less\type.less" />
+    <Content Include="Content\mytemplate\themes\less\utilities.less" />
+    <Content Include="Content\mytemplate\themes\less\variables.less" />
+    <Content Include="Content\mytemplate\themes\less\wells.less" />
+    <EntityDeploy Include="Model2.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model2.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Model2.edmx.diagram">
+      <DependentUpon>Model2.edmx</DependentUpon>
+    </Content>
+    <Content Include="Content\GoogleNexusWebsiteMenu\.DS_Store" />
+    <Content Include="Content\GoogleNexusWebsiteMenu\css\.DS_Store" />
+    <Content Include="Content\GoogleNexusWebsiteMenu\fonts\.DS_Store" />
+    <Content Include="Content\GoogleNexusWebsiteMenu\fonts\codropsicons\.DS_Store" />
+    <Content Include="Content\GoogleNexusWebsiteMenu\fonts\codropsicons\codropsicons.eot" />
+    <Content Include="Content\GoogleNexusWebsiteMenu\fonts\codropsicons\codropsicons.ttf" />
+    <Content Include="Content\GoogleNexusWebsiteMenu\fonts\codropsicons\codropsicons.woff" />
+    <Content Include="Content\GoogleNexusWebsiteMenu\fonts\ecoicons\ecoicons.eot" />
+    <Content Include="Content\GoogleNexusWebsiteMenu\fonts\ecoicons\ecoicons.ttf" />
+    <Content Include="Content\GoogleNexusWebsiteMenu\fonts\ecoicons\ecoicons.woff" />
+    <Content Include="Content\GoogleNexusWebsiteMenu\js\.DS_Store" />
+    <Content Include="Content\GoogleNexusWebsiteMenu\README.md" />
+    <Content Include="Content\registrationform\.sass-cache\21880c0ffe15753a53f8402e9f64e1077e071510\style.scssc" />
+    <Content Include="Content\registrationform\.sass-cache\2866be86c578bb583fbf023501bb9fd24cc3bf22\extend.scssc" />
+    <Content Include="Content\registrationform\.sass-cache\2866be86c578bb583fbf023501bb9fd24cc3bf22\fonts.scssc" />
+    <Content Include="Content\registrationform\.sass-cache\2866be86c578bb583fbf023501bb9fd24cc3bf22\global.scssc" />
+    <Content Include="Content\registrationform\.sass-cache\2866be86c578bb583fbf023501bb9fd24cc3bf22\minxi.scssc" />
+    <Content Include="Content\registrationform\.sass-cache\2866be86c578bb583fbf023501bb9fd24cc3bf22\variables.scssc" />
+    <Content Include="Content\registrationform\.sass-cache\3948936f84e1a30385e73a9be140b58b48c82e15\style.scssc" />
+    <Content Include="Content\registrationform\.sass-cache\41c45612afe01e9f2496d846f6e06c0f4eae7672\extend.scssc" />
+    <Content Include="Content\registrationform\.sass-cache\41c45612afe01e9f2496d846f6e06c0f4eae7672\fonts.scssc" />
+    <Content Include="Content\registrationform\.sass-cache\41c45612afe01e9f2496d846f6e06c0f4eae7672\global.scssc" />
+    <Content Include="Content\registrationform\.sass-cache\41c45612afe01e9f2496d846f6e06c0f4eae7672\minxi.scssc" />
+    <Content Include="Content\registrationform\.sass-cache\41c45612afe01e9f2496d846f6e06c0f4eae7672\variables.scssc" />
+    <Content Include="Content\registrationform\.sass-cache\5c394fb1b61974d1fcc7e7bce6daf8df739d1747\style.scssc" />
+    <Content Include="Content\registrationform\.sass-cache\643489b018602f15119d8f44aeb7fc79468873a9\main.scssc" />
+    <Content Include="Content\registrationform\.sass-cache\643489b018602f15119d8f44aeb7fc79468873a9\responsive.scssc" />
+    <Content Include="Content\registrationform\.sass-cache\68358af483fbd41941949162bcf87696e73f5956\extend.scssc" />
+    <Content Include="Content\registrationform\.sass-cache\68358af483fbd41941949162bcf87696e73f5956\fonts.scssc" />
+    <Content Include="Content\registrationform\.sass-cache\68358af483fbd41941949162bcf87696e73f5956\global.scssc" />
+    <Content Include="Content\registrationform\.sass-cache\68358af483fbd41941949162bcf87696e73f5956\minxi.scssc" />
+    <Content Include="Content\registrationform\.sass-cache\68358af483fbd41941949162bcf87696e73f5956\variables.scssc" />
+    <Content Include="Content\registrationform\.sass-cache\7643c8aa2e335ff5e104bc47d8dd7f1a0693bb39\extend.scssc" />
+    <Content Include="Content\registrationform\.sass-cache\7643c8aa2e335ff5e104bc47d8dd7f1a0693bb39\fonts.scssc" />
+    <Content Include="Content\registrationform\.sass-cache\7643c8aa2e335ff5e104bc47d8dd7f1a0693bb39\global.scssc" />
+    <Content Include="Content\registrationform\.sass-cache\7643c8aa2e335ff5e104bc47d8dd7f1a0693bb39\minxi.scssc" />
+    <Content Include="Content\registrationform\.sass-cache\7643c8aa2e335ff5e104bc47d8dd7f1a0693bb39\variables.scssc" />
+    <Content Include="Content\registrationform\.sass-cache\82ffc783cd596580cf9adcef3bc24b981935f37f\style.scssc" />
+    <Content Include="Content\registrationform\.sass-cache\9dc767a56f3dc2f8a933300255cd2265f13191d4\main.scssc" />
+    <Content Include="Content\registrationform\.sass-cache\9dc767a56f3dc2f8a933300255cd2265f13191d4\responsive.scssc" />
+    <Content Include="Content\registrationform\.sass-cache\c790b871e732c41046d2d09671dc101cd76728e2\main.scssc" />
+    <Content Include="Content\registrationform\.sass-cache\c790b871e732c41046d2d09671dc101cd76728e2\responsive.scssc" />
+    <Content Include="Content\registrationform\.sass-cache\cc2f6914db28d61b7d0c6dff455cf4df6db5b30f\main.scssc" />
+    <Content Include="Content\registrationform\.sass-cache\cc2f6914db28d61b7d0c6dff455cf4df6db5b30f\responsive.scssc" />
+    <Content Include="Content\registrationform\.sass-cache\d686493398f83d759b5ae7b15feb395ac4a1f85e\extend.scssc" />
+    <Content Include="Content\registrationform\.sass-cache\d686493398f83d759b5ae7b15feb395ac4a1f85e\fonts.scssc" />
+    <Content Include="Content\registrationform\.sass-cache\d686493398f83d759b5ae7b15feb395ac4a1f85e\global.scssc" />
+    <Content Include="Content\registrationform\.sass-cache\d686493398f83d759b5ae7b15feb395ac4a1f85e\minxi.scssc" />
+    <Content Include="Content\registrationform\.sass-cache\d686493398f83d759b5ae7b15feb395ac4a1f85e\variables.scssc" />
+    <Content Include="Content\registrationform\.sass-cache\dd2deb9c5f01209b6937898f47e048cde30208ce\style.scssc" />
+    <Content Include="Content\registrationform\.sass-cache\f8f0098c6d87e34d84a0704fb71588a6cc87b962\main.scssc" />
+    <Content Include="Content\registrationform\.sass-cache\f8f0098c6d87e34d84a0704fb71588a6cc87b962\responsive.scssc" />
+    <Content Include="Content\registrationform\css\style.css.map" />
+    <Content Include="Content\registrationform\fonts\material-icon\fonts\Material-Design-Iconic-Font.eot" />
+    <Content Include="Content\registrationform\fonts\material-icon\fonts\Material-Design-Iconic-Font.ttf" />
+    <Content Include="Content\registrationform\fonts\material-icon\fonts\Material-Design-Iconic-Font.woff" />
+    <Content Include="Content\registrationform\fonts\material-icon\fonts\Material-Design-Iconic-Font.woff2" />
+    <Content Include="Content\registrationform\fonts\poppins\poppins-v5-latin-300.eot" />
+    <Content Include="Content\registrationform\fonts\poppins\poppins-v5-latin-300.ttf" />
+    <Content Include="Content\registrationform\fonts\poppins\poppins-v5-latin-300.woff" />
+    <Content Include="Content\registrationform\fonts\poppins\poppins-v5-latin-300.woff2" />
+    <Content Include="Content\registrationform\fonts\poppins\poppins-v5-latin-300italic.eot" />
+    <Content Include="Content\registrationform\fonts\poppins\poppins-v5-latin-300italic.ttf" />
+    <Content Include="Content\registrationform\fonts\poppins\poppins-v5-latin-300italic.woff" />
+    <Content Include="Content\registrationform\fonts\poppins\poppins-v5-latin-300italic.woff2" />
+    <Content Include="Content\registrationform\fonts\poppins\poppins-v5-latin-500.eot" />
+    <Content Include="Content\registrationform\fonts\poppins\poppins-v5-latin-500.ttf" />
+    <Content Include="Content\registrationform\fonts\poppins\poppins-v5-latin-500.woff" />
+    <Content Include="Content\registrationform\fonts\poppins\poppins-v5-latin-500.woff2" />
+    <Content Include="Content\registrationform\fonts\poppins\poppins-v5-latin-500italic.eot" />
+    <Content Include="Content\registrationform\fonts\poppins\poppins-v5-latin-500italic.ttf" />
+    <Content Include="Content\registrationform\fonts\poppins\poppins-v5-latin-500italic.woff" />
+    <Content Include="Content\registrationform\fonts\poppins\poppins-v5-latin-500italic.woff2" />
+    <Content Include="Content\registrationform\fonts\poppins\poppins-v5-latin-600.eot" />
+    <Content Include="Content\registrationform\fonts\poppins\poppins-v5-latin-600.ttf" />
+    <Content Include="Content\registrationform\fonts\poppins\poppins-v5-latin-600.woff" />
+    <Content Include="Content\registrationform\fonts\poppins\poppins-v5-latin-600.woff2" />
+    <Content Include="Content\registrationform\fonts\poppins\poppins-v5-latin-700.eot" />
+    <Content Include="Content\registrationform\fonts\poppins\poppins-v5-latin-700.ttf" />
+    <Content Include="Content\registrationform\fonts\poppins\poppins-v5-latin-700.woff" />
+    <Content Include="Content\registrationform\fonts\poppins\poppins-v5-latin-700.woff2" />
+    <Content Include="Content\registrationform\fonts\poppins\poppins-v5-latin-700italic.eot" />
+    <Content Include="Content\registrationform\fonts\poppins\poppins-v5-latin-700italic.ttf" />
+    <Content Include="Content\registrationform\fonts\poppins\poppins-v5-latin-700italic.woff" />
+    <Content Include="Content\registrationform\fonts\poppins\poppins-v5-latin-700italic.woff2" />
+    <Content Include="Content\registrationform\fonts\poppins\poppins-v5-latin-800.eot" />
+    <Content Include="Content\registrationform\fonts\poppins\poppins-v5-latin-800.ttf" />
+    <Content Include="Content\registrationform\fonts\poppins\poppins-v5-latin-800.woff" />
+    <Content Include="Content\registrationform\fonts\poppins\poppins-v5-latin-800.woff2" />
+    <Content Include="Content\registrationform\fonts\poppins\poppins-v5-latin-800italic.eot" />
+    <Content Include="Content\registrationform\fonts\poppins\poppins-v5-latin-800italic.ttf" />
+    <Content Include="Content\registrationform\fonts\poppins\poppins-v5-latin-800italic.woff" />
+    <Content Include="Content\registrationform\fonts\poppins\poppins-v5-latin-800italic.woff2" />
+    <Content Include="Content\registrationform\fonts\poppins\poppins-v5-latin-900.eot" />
+    <Content Include="Content\registrationform\fonts\poppins\poppins-v5-latin-900.ttf" />
+    <Content Include="Content\registrationform\fonts\poppins\poppins-v5-latin-900.woff" />
+    <Content Include="Content\registrationform\fonts\poppins\poppins-v5-latin-900.woff2" />
+    <Content Include="Content\registrationform\fonts\poppins\poppins-v5-latin-italic.eot" />
+    <Content Include="Content\registrationform\fonts\poppins\poppins-v5-latin-italic.ttf" />
+    <Content Include="Content\registrationform\fonts\poppins\poppins-v5-latin-italic.woff" />
+    <Content Include="Content\registrationform\fonts\poppins\poppins-v5-latin-italic.woff2" />
+    <Content Include="Content\registrationform\fonts\poppins\poppins-v5-latin-regular.eot" />
+    <Content Include="Content\registrationform\fonts\poppins\poppins-v5-latin-regular.ttf" />
+    <Content Include="Content\registrationform\fonts\poppins\poppins-v5-latin-regular.woff" />
+    <Content Include="Content\registrationform\fonts\poppins\poppins-v5-latin-regular.woff2" />
+    <Content Include="Content\registrationform\fonts\poppins\roboto-condensed-v16-latin-700.eot" />
+    <Content Include="Content\registrationform\fonts\poppins\roboto-condensed-v16-latin-700.ttf" />
+    <Content Include="Content\registrationform\fonts\poppins\roboto-condensed-v16-latin-700.woff" />
+    <Content Include="Content\registrationform\fonts\poppins\roboto-condensed-v16-latin-700.woff2" />
+    <Content Include="Content\registrationform\fonts\poppins\roboto-condensed-v16-latin-700italic.eot" />
+    <Content Include="Content\registrationform\fonts\poppins\roboto-condensed-v16-latin-700italic.ttf" />
+    <Content Include="Content\registrationform\fonts\poppins\roboto-condensed-v16-latin-700italic.woff" />
+    <Content Include="Content\registrationform\fonts\poppins\roboto-condensed-v16-latin-700italic.woff2" />
+    <Content Include="Content\registrationform\fonts\poppins\roboto-condensed-v16-latin-italic.eot" />
+    <Content Include="Content\registrationform\fonts\poppins\roboto-condensed-v16-latin-italic.ttf" />
+    <Content Include="Content\registrationform\fonts\poppins\roboto-condensed-v16-latin-italic.woff" />
+    <Content Include="Content\registrationform\fonts\poppins\roboto-condensed-v16-latin-italic.woff2" />
+    <Content Include="Content\registrationform\fonts\poppins\roboto-condensed-v16-latin-regular.eot" />
+    <Content Include="Content\registrationform\fonts\poppins\roboto-condensed-v16-latin-regular.ttf" />
+    <Content Include="Content\registrationform\fonts\poppins\roboto-condensed-v16-latin-regular.woff" />
+    <Content Include="Content\registrationform\fonts\poppins\roboto-condensed-v16-latin-regular.woff2" />
+    <Content Include="Content\registrationform\scss\common\extend.scss" />
+    <Content Include="Content\registrationform\scss\common\fonts.scss" />
+    <Content Include="Content\registrationform\scss\common\global.scss" />
+    <Content Include="Content\registrationform\scss\common\minxi.scss" />
+    <Content Include="Content\registrationform\scss\common\variables.scss" />
+    <Content Include="Content\registrationform\scss\layouts\main.scss" />
+    <Content Include="Content\registrationform\scss\layouts\responsive.scss" />
+    <Content Include="Content\registrationform\scss\style.scss" />
+    <Content Include="Content\Login\fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\Login\fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\Login\fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\Login\fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\Login\fonts\font-awesome-4.7.0\fonts\FontAwesome.otf" />
+    <Content Include="Content\Login\fonts\font-awesome-4.7.0\less\animated.less" />
+    <Content Include="Content\Login\fonts\font-awesome-4.7.0\less\bordered-pulled.less" />
+    <Content Include="Content\Login\fonts\font-awesome-4.7.0\less\core.less" />
+    <Content Include="Content\Login\fonts\font-awesome-4.7.0\less\fixed-width.less" />
+    <Content Include="Content\Login\fonts\font-awesome-4.7.0\less\font-awesome.less" />
+    <Content Include="Content\Login\fonts\font-awesome-4.7.0\less\icons.less" />
+    <Content Include="Content\Login\fonts\font-awesome-4.7.0\less\larger.less" />
+    <Content Include="Content\Login\fonts\font-awesome-4.7.0\less\list.less" />
+    <Content Include="Content\Login\fonts\font-awesome-4.7.0\less\mixins.less" />
+    <Content Include="Content\Login\fonts\font-awesome-4.7.0\less\path.less" />
+    <Content Include="Content\Login\fonts\font-awesome-4.7.0\less\rotated-flipped.less" />
+    <Content Include="Content\Login\fonts\font-awesome-4.7.0\less\screen-reader.less" />
+    <Content Include="Content\Login\fonts\font-awesome-4.7.0\less\stacked.less" />
+    <Content Include="Content\Login\fonts\font-awesome-4.7.0\less\variables.less" />
+    <Content Include="Content\Login\fonts\font-awesome-4.7.0\scss\font-awesome.scss" />
+    <Content Include="Content\Login\fonts\font-awesome-4.7.0\scss\_animated.scss" />
+    <Content Include="Content\Login\fonts\font-awesome-4.7.0\scss\_bordered-pulled.scss" />
+    <Content Include="Content\Login\fonts\font-awesome-4.7.0\scss\_core.scss" />
+    <Content Include="Content\Login\fonts\font-awesome-4.7.0\scss\_fixed-width.scss" />
+    <Content Include="Content\Login\fonts\font-awesome-4.7.0\scss\_icons.scss" />
+    <Content Include="Content\Login\fonts\font-awesome-4.7.0\scss\_larger.scss" />
+    <Content Include="Content\Login\fonts\font-awesome-4.7.0\scss\_list.scss" />
+    <Content Include="Content\Login\fonts\font-awesome-4.7.0\scss\_mixins.scss" />
+    <Content Include="Content\Login\fonts\font-awesome-4.7.0\scss\_path.scss" />
+    <Content Include="Content\Login\fonts\font-awesome-4.7.0\scss\_rotated-flipped.scss" />
+    <Content Include="Content\Login\fonts\font-awesome-4.7.0\scss\_screen-reader.scss" />
+    <Content Include="Content\Login\fonts\font-awesome-4.7.0\scss\_stacked.scss" />
+    <Content Include="Content\Login\fonts\font-awesome-4.7.0\scss\_variables.scss" />
+    <Content Include="Content\Login\fonts\iconic\fonts\Material-Design-Iconic-Font.eot" />
+    <Content Include="Content\Login\fonts\iconic\fonts\Material-Design-Iconic-Font.ttf" />
+    <Content Include="Content\Login\fonts\iconic\fonts\Material-Design-Iconic-Font.woff" />
+    <Content Include="Content\Login\fonts\iconic\fonts\Material-Design-Iconic-Font.woff2" />
+    <Content Include="Content\Login\fonts\JosefinSans\JosefinSans-Bold.ttf" />
+    <Content Include="Content\Login\fonts\JosefinSans\JosefinSans-BoldItalic.ttf" />
+    <Content Include="Content\Login\fonts\JosefinSans\JosefinSans-Italic.ttf" />
+    <Content Include="Content\Login\fonts\JosefinSans\JosefinSans-Light.ttf" />
+    <Content Include="Content\Login\fonts\JosefinSans\JosefinSans-LightItalic.ttf" />
+    <Content Include="Content\Login\fonts\JosefinSans\JosefinSans-Regular.ttf" />
+    <Content Include="Content\Login\fonts\JosefinSans\JosefinSans-SemiBold.ttf" />
+    <Content Include="Content\Login\fonts\JosefinSans\JosefinSans-SemiBoldItalic.ttf" />
+    <Content Include="Content\Login\fonts\JosefinSans\JosefinSans-Thin.ttf" />
+    <Content Include="Content\Login\fonts\JosefinSans\JosefinSans-ThinItalic.ttf" />
+    <Content Include="Content\Login\fonts\source-sans-pro\SourceSansPro-Black.ttf" />
+    <Content Include="Content\Login\fonts\source-sans-pro\SourceSansPro-BlackItalic.ttf" />
+    <Content Include="Content\Login\fonts\source-sans-pro\SourceSansPro-Bold.ttf" />
+    <Content Include="Content\Login\fonts\source-sans-pro\SourceSansPro-BoldItalic.ttf" />
+    <Content Include="Content\Login\fonts\source-sans-pro\SourceSansPro-ExtraLight.ttf" />
+    <Content Include="Content\Login\fonts\source-sans-pro\SourceSansPro-ExtraLightItalic.ttf" />
+    <Content Include="Content\Login\fonts\source-sans-pro\SourceSansPro-Italic.ttf" />
+    <Content Include="Content\Login\fonts\source-sans-pro\SourceSansPro-Light.ttf" />
+    <Content Include="Content\Login\fonts\source-sans-pro\SourceSansPro-LightItalic.ttf" />
+    <Content Include="Content\Login\fonts\source-sans-pro\SourceSansPro-Regular.ttf" />
+    <Content Include="Content\Login\fonts\source-sans-pro\SourceSansPro-SemiBold.ttf" />
+    <Content Include="Content\Login\fonts\source-sans-pro\SourceSansPro-SemiBoldItalic.ttf" />
+    <Content Include="Content\Login\vendor\bootstrap\css\bootstrap-grid.css.map" />
+    <Content Include="Content\Login\vendor\bootstrap\css\bootstrap-grid.min.css.map" />
+    <Content Include="Content\Login\vendor\bootstrap\css\bootstrap-reboot.css.map" />
+    <Content Include="Content\Login\vendor\bootstrap\css\bootstrap-reboot.min.css.map" />
+    <Content Include="Content\Login\vendor\bootstrap\css\bootstrap.css.map" />
+    <Content Include="Content\Login\vendor\bootstrap\css\bootstrap.min.css.map" />
+    <Content Include="Content\regform\vendor\font-awesome-4.7\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\regform\vendor\font-awesome-4.7\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\regform\vendor\font-awesome-4.7\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\regform\vendor\font-awesome-4.7\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\regform\vendor\font-awesome-4.7\fonts\FontAwesome.otf" />
+    <Content Include="Content\regform\vendor\mdi-font\fonts\Material-Design-Iconic-Font.eot" />
+    <Content Include="Content\regform\vendor\mdi-font\fonts\Material-Design-Iconic-Font.ttf" />
+    <Content Include="Content\regform\vendor\mdi-font\fonts\Material-Design-Iconic-Font.woff" />
+    <Content Include="Content\regform\vendor\mdi-font\fonts\Material-Design-Iconic-Font.woff2" />
+    <Content Include="libman.json" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\_references.js" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
+    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Account\_RemoveAccountPartial.cshtml" />
+    <Content Include="Views\Account\_SetPasswordPartial.cshtml" />
+    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Manage.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\FoundProducts\Delete.cshtml" />
+    <Content Include="Views\FoundProducts\Details.cshtml" />
+    <Content Include="Views\FoundProducts\Edit.cshtml" />
+    <Content Include="Views\FoundProducts\Index.cshtml" />
+    <Content Include="Views\LostProducts\Create.cshtml" />
+    <Content Include="Views\LostProducts\Delete.cshtml" />
+    <Content Include="Views\LostProducts\Details.cshtml" />
+    <Content Include="Views\LostProducts\Edit.cshtml" />
+    <Content Include="Views\LostProducts\Index.cshtml" />
+    <Content Include="Views\FoundedCreate\Index.cshtml" />
+    <Content Include="Views\LostCreate\Index.cshtml" />
+    <Content Include="Views\FoundProducts\Create.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\_mytemplate.cshtml" />
+    <Content Include="Views\Home\Mytemplate.cshtml" />
+    <Content Include="Views\FoundProducts\searchpartial.cshtml" />
+    <Content Include="Views\Template\Index.cshtml" />
+    <Content Include="Views\Template\Create.cshtml" />
+    <Content Include="Views\Template\CreateTopLost.cshtml" />
+    <Content Include="Views\Template\CommonIndex.cshtml" />
+    <Content Include="Views\Allproducts\Index.cshtml" />
+    <Content Include="Views\Allproducts\Details.cshtml" />
+    <Content Include="Views\Template\Details.cshtml" />
+    <Content Include="Views\Template\DetailsToplost.cshtml" />
+    <Content Include="Views\AdminApproval\Create.cshtml" />
+    <Content Include="Views\AdminApproval\Delete.cshtml" />
+    <Content Include="Views\AdminApproval\Details.cshtml" />
+    <Content Include="Views\AdminApproval\Edit.cshtml" />
+    <Content Include="Views\AdminApproval\Index.cshtml" />
+    <Content Include="Views\FoundProducts\Success.cshtml" />
+    <Content Include="Views\AdminApproval\CreateConfirm.cshtml" />
+    <Content Include="Views\LostProducts\Success.cshtml" />
+    <Content Include="Views\Template\Success.cshtml" />
+    <Content Include="Views\AdminApproval\CreateForm.cshtml" />
+    <Content Include="Views\AdminApproval\Invalid.cshtml" />
+    <Content Include="Views\Allproducts\Matchedproducts.cshtml" />
+    <Content Include="Views\Register\Create.cshtml" />
+    <Content Include="Views\Register\Delete.cshtml" />
+    <Content Include="Views\Register\Details.cshtml" />
+    <Content Include="Views\Register\Edit.cshtml" />
+    <Content Include="Views\Register\Index.cshtml" />
+    <Content Include="Views\Login\Create.cshtml" />
+    <Content Include="Views\Login\Delete.cshtml" />
+    <Content Include="Views\Login\Details.cshtml" />
+    <Content Include="Views\Login\Edit.cshtml" />
+    <Content Include="Views\Login\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Content\mytemplate\themes\less\oregional\" />
+    <Folder Include="Image\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+    <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>9542</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:9542/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2f89bdd125bc4a8ba54d3582f38bb53d" Name="Diagram1" ZoomLevel="40">
+        <EntityTypeShape EntityType="LOFDbModel1.AllProductsTbl" Width="1.5" PointX="19.625" PointY="20" IsExpanded="true" />
+        <EntityTypeShape EntityType="LOFDbModel1.Category" Width="1.5" PointX="12.875" PointY="14.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="LOFDbModel1.Foundtbl" Width="1.5" PointX="5.125" PointY="19.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="LOFDbModel1.Location" Width="1.5" PointX="7" PointY="13.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="LOFDbModel1.Losttbl" Width="1.5" PointX="16.125" PointY="13.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="LOFDbModel1.SubCategory" Width="1.5" PointX="9.625" PointY="14.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="LOFDbModel1.SubLocation" Width="1.5" PointX="3.875" PointY="15.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="LOFDbModel1.Topfoundtbl" Width="1.5" PointX="11.5" PointY="20" IsExpanded="true" />
+        <EntityTypeShape EntityType="LOFDbModel1.TopLosttbl" Width="1.5" PointX="8.75" PointY="18.875" IsExpanded="true" />
+        <AssociationConnector Association="LOFDbModel1.FK_AllProductsTbl_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="LOFDbModel1.FK_AllProductsTbl_Foundtbl" ManuallyRouted="false" />
+        <AssociationConnector Association="LOFDbModel1.FK_AllProductsTbl_Location" ManuallyRouted="false" />
+        <AssociationConnector Association="LOFDbModel1.FK_AllProductsTbl_Losttbl" ManuallyRouted="false" >
+        </AssociationConnector>
+        <AssociationConnector Association="LOFDbModel1.FK_AllProductsTbl_SubCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="LOFDbModel1.FK_AllProductsTbl_SubLocation" ManuallyRouted="true" >
+          <ConnectorPoint PointX="4.1933569999999989" PointY="18.566793619791671" />
+          <ConnectorPoint PointX="4.1933569999999989" PointY="26.199643748236412" />
+          <ConnectorPoint PointX="14.53255781" PointY="26.199643748236412" />
+          <ConnectorPoint PointX="14.53255781" PointY="25.067050036125078" />
+          <ConnectorPoint PointX="17.9444940773" PointY="25.067050036125078" />
+          <ConnectorPoint PointX="17.9444940773" PointY="25.297952814872986" />
+          <ConnectorPoint PointX="19.441992905017969" PointY="25.297952814872986" />
+          <ConnectorPoint PointX="19.441992905017969" PointY="25.539055813802108" />
+          <ConnectorPoint PointX="19.625" PointY="25.539055813802108" />
+        </AssociationConnector>
+        <AssociationConnector Association="LOFDbModel1.FK_Foundtbl_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="LOFDbModel1.FK_Losttbl_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="LOFDbModel1.FK_SubCategory_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="LOFDbModel1.FK_Topfoundtbl_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="LOFDbModel1.FK_TopLosttbl_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="LOFDbModel1.FK_Foundtbl_Location" ManuallyRouted="false" />
+        <AssociationConnector Association="LOFDbModel1.FK_Foundtbl_SubCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="LOFDbModel1.FK_Foundtbl_SubLocation" ManuallyRouted="false" />
+        <AssociationConnector Association="LOFDbModel1.FK_Topfoundtbl_Foundtbl" ManuallyRouted="false" />
+        <AssociationConnector Association="LOFDbModel1.FK_Losttbl_Location" ManuallyRouted="false" />
+        <AssociationConnector Association="LOFDbModel1.FK_SubLocation_Location" ManuallyRouted="false" />
+        <AssociationConnector Association="LOFDbModel1.FK_Topfoundtbl_Location" ManuallyRouted="false" />
+        <AssociationConnector Association="LOFDbModel1.FK_TopLosttbl_Location" ManuallyRouted="false" />
+        <AssociationConnector Association="LOFDbModel1.FK_Losttbl_SubCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="LOFDbModel1.FK_Losttbl_SubLocation" ManuallyRouted="false" />
+        <AssociationConnector Association="LOFDbModel1.FK_TopLosttbl_Losttbl" ManuallyRouted="false" />
+        <AssociationConnector Association="LOFDbModel1.FK_Topfoundtbl_SubCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="LOFDbModel1.FK_TopLosttbl_SubCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="LOFDbModel1.FK_Topfoundtbl_SubLocation" ManuallyRouted="false" />
+        <AssociationConnector Association="LOFDbModel1.FK_TopLosttbl_SubLocation" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="LOFDbModel1.AdminApprovalTbl" Width="1.5" PointX="20.25" PointY="13.375" />
+        <AssociationConnector Association="LOFDbModel1.FK_AdminApprovalTbl_Category" />
+        <AssociationConnector Association="LOFDbModel1.FK_AdminApprovalTbl_Location" />
+        <AssociationConnector Association="LOFDbModel1.FK_AdminApprovalTbl_SubCategory" />
+        <AssociationConnector Association="LOFDbModel1.FK_AdminApprovalTbl_SubLocation" />
+        <EntityTypeShape EntityType="LOFDbModel1.LoginTbl" Width="1.5" PointX="17.125" PointY="21.75" />
+        <EntityTypeShape EntityType="LOFDbModel1.RegisterTbl" Width="1.5" PointX="13.875" PointY="21" />
+        <AssociationConnector Association="LOFDbModel1.FK_LoginTbl_LoginTbl" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,345 @@
+﻿@model LOF.Losttbl
+
+<html lang="en">
+<head>
+
+    <link rel="stylesheet" href=@Url.Content("~/Content/cssmenu/styles.css")>
+    <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+    <script src=@Url.Content("~/Content/cssmenu/script.js")></script>
+    <link href=@Url.Content("~/Content/regform/vendor/mdi-font/css/material-design-iconic-font.min.css") rel="stylesheet" media="all">
+    <link href=@Url.Content("~/Content/regform/vendor/font-awesome-4.7/css/font-awesome.min.css" ) rel="stylesheet" media="all">
+    <!-- Font special for pages-->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <!-- Vendor CSS-->
+    <link href=@Url.Content("~/Content/regform/vendor/select2/select2.min.css" ) rel="stylesheet" media="all">
+    <link href=@Url.Content("~/Content/regform/vendor/datepicker/daterangepicker.css") rel="stylesheet" media="all">
+    <!-- Main CSS-->
+    <link href=@Url.Content("~/Content/regform/css/main.css") rel="stylesheet" media="all">
+</head>
+@{
+    ViewBag.Title = "Create";
+}
+<body>
+    <div id='cssmenu'>
+        <ul>
+            <li class='active'><a href="@Url.Content("~/Template/Index")">Lost & Found</a></li>
+            <li><a href="@Url.Content("~/FoundProducts/Create")">Found Anything??</a></li>
+            <li><a href="@Url.Content("~/LostProducts/Create")">Lost Anything??</a></li>
+            <li><a href="@Url.Content("~/AllProducts/Index")">All Products</a></li>
+            <li><a href="@Url.Content("~/FoundProducts/Index")">Found Products</a></li>
+            <li><a href="@Url.Content("~/LostProducts/Index")">Lost Products</a></li>
+
+
+
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+
+            <li><a class="navbar-brand active" href="@Url.Content("~/Account/Register")">Register</a></li>
+            <li><a class=" active" href="@Url.Content("~/Account/Login")">Login</a></li>
+
+
+        </ul>
+    </div>
+
+
+    <style>
+        body {
+        }
+    </style>
+
+    @using (Html.BeginForm("Create", "LostProducts", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins">
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="lead" style="padding-left:90px;">  Do you want your Losted product to be promoted  ??</p>
+                </div>
+                <div class="col-md-1">
+
+                    <button class="btn btn-primary" onclick="window.location.href='@Url.Content("~/Template/CreateTopLost")'">Promote</button>
+                </div>
+            </div>
+            <br />
+            <br />
+            <div class="wrapper wrapper--w680">
+                <div class="card card-4">
+                    <div class="card-body">
+                        <form method="POST">
+
+                            @Html.ValidationSummary(true)
+
+
+                            <div class="row row-space">
+                                <div class="col-2">
+                                    <div class="input-group">
+                                        <label class="label">Title</label>
+
+                                        @Html.TextBoxFor(model => model.Title, new { @class = "input--style-4", name = "first_name" })
+                                        @Html.ValidationMessageFor(model => model.Title)
+                                    </div>
+                                </div>
+
+
+
+
+                                <div class="col-2">
+
+                                    <div class="input-group">
+                                        <label class="label">Date Of Lost</label>
+                                        <div class="input-group-icon">
+
+                                            @Html.TextBoxFor(model => model.DateOfLost, new { @class = "input--style-4 js-datepicker", name = "birthday", type = "text" })
+                                            <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
+
+                                            @Html.ValidationMessageFor(model => model.DateOfLost)
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row row-space">
+
+                                <div class="col-2">
+
+                                    <div class="input-group">
+                                        <label class="label">Type</label>
+
+                                        @Html.TextBoxFor(model => model.Type, new { @readonly = "readonly", @class = "input--style-4", @Value = "LOSTED" })
+                                        @Html.ValidationMessageFor(model => model.Type)
+                                    </div>
+                                </div>
+                                <div class="col-2">
+
+                                    <div class="form-group">
+                                        <label class="label">Upload Image</label>
+
+                                        <input type="file" name="ImageFile" required>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row row-space">
+                                <div class="col-2">
+                                    <div class="input-group">
+                                        <label class="label">Location</label>
+
+                                        @Html.DropDownListFor(model => model.Location, ViewBag.location as List<SelectListItem>, new { style = "width: 200px;", @class = "form-control input-lg", placeholder = "Location" })
+
+                                        @Html.ValidationMessageFor(model => model.Location, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <div class="input-group">
+                                        <label class="label">Sub Location</label>
+
+                                        @Html.DropDownListFor(model => model.SubLocation, new SelectList(string.Empty, "Value", "Text"), "Select SubLocation", new { style = "width:200px", @class = "form-control input-lg", placeholder = "Sub Location" })
+
+                                        @Html.ValidationMessageFor(model => model.SubLocation, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+
+                            @*   <div class="form-group">
+
+                                    @Html.LabelFor(model => model.Category, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        <div class="col-md-10">
+
+
+                                            @Html.DropDownListFor(model => model.Category,new List<SelectListItem>
+                                           { new SelectListItem{Text="Electronics", Value="Electronics"},
+                                             new SelectListItem{Text="Pet", Value="Pet"},
+                                              new SelectListItem{Text="Human", Value="Human"},
+                                               new SelectListItem{Text="Others", Value="Others"},
+                                                                  new SelectListItem{Text="Document", Value="Document"}
+
+                                           }, "Please select", new { @class = "form-control input-lg" })
+                                        </div>
+                                    </div>
+
+                                </div>
+                            *@
+                            <div class="row row-space">
+
+                                <div class="col-2">
+                                    <div class="input-group">
+                                        <label class="label">Category</label>
+
+                                        @Html.DropDownListFor(model => model.Category, ViewBag.category as List<SelectListItem>, new { style = "width: 200px;", @class = "form-control input-lg" })
+
+                                        @Html.ValidationMessageFor(model => model.Category, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="col-2">
+                                    <div class="input-group">
+                                        <label class="label">Sub Category</label>
+
+                                        @Html.DropDownListFor(model => model.SubCategory, new SelectList(string.Empty, "Value", "Text"), "Select SubCategory", new { style = "width:200px", @class = "form-control input-lg" })
+
+                                        @Html.ValidationMessageFor(model => model.SubCategory, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+
+                                <div class="input-group">
+
+                                    <label class="label">Details</label>
+                                    <div class="col-md-12">
+
+                                        @Html.TextBoxFor(model => model.Details, new { @class = "form-control input-lg" })
+                                        @Html.ValidationMessageFor(model => model.Details)
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+                            <script type="text/javascript">
+
+
+
+        $(document).ready(function () {
+
+            $("#Category").change(function () {
+                $("#SubCategory").empty();
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("getSubcategory")',
+                    dataType: 'json',
+                    data: { id: $("#Category").val() },
+                    success: function (subcategory) {
+
+                        $.each(subcategory, function (i, subcategory) {
+                            $("#SubCategory").append('<option value="'
+                                + subcategory.Value + '">'
+                                + subcategory.Text + '</option>');
+                        });
+                    },
+                    error: function (ex) {
+                        alert('Failed.' + ex);
+                    }
+                });
+                return false;
+            })
+                        });
+
+
+@**@
+   $(document).ready(function () {
+
+            $("#Location").change(function () {
+                $("#SubLocation").empty();
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("getSubLocation")',
+                    dataType: 'json',
+                    data: { id: $("#Location").val() },
+                    success: function (sublocation) {
+
+                        $.each(sublocation, function (i, sublocation) {
+                            $("#SubLocation").append('<option value="'
+                                + sublocation.Value + '">'
+                                + sublocation.Text + '</option>');
+                        });
+                    },
+                    error: function (ex) {
+                        alert('Failed.' + ex);
+                    }
+                });
+                return false;
+            })
+        });
+                            </script>
+                            @*  <div class="form-group">
+                                    @Html.LabelFor(model => model.SubCategory, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        <div class="col-md-10">
+
+
+                                            @Html.DropDownListFor(model => model.SubCategory,new List<SelectListItem>
+                                           { new SelectListItem{Text="Cameras", Value="Cameras"},
+                                             new SelectListItem{Text="Computers,Tablets & Laptop", Value="Computers,Tablets & Laptop"},
+                                              new SelectListItem{Text="Mobile Phone", Value="Mobile Phone"},
+                                               new SelectListItem{Text="Sound & Vision", Value="Sound & Vision"},
+                                                                  new SelectListItem{Text="Cat", Value="Cat"},
+                                                     new SelectListItem{Text="Dog", Value="Dog"},
+                                                                  new SelectListItem{Text="Rabbit", Value="Rabbit"},
+                                                                  new SelectListItem{Text="Certificate", Value="Certificate"},
+                                                                  new SelectListItem{Text="Passport", Value="Passport"},
+                                                                  new SelectListItem{Text="Driving License", Value="Driving License"},
+                                                                  new SelectListItem{Text="Music Instruments", Value="Music Instruments"},
+                                                                  new SelectListItem{Text="Sports Equipments", Value="Sports Equipments"},
+                                                                  new SelectListItem{Text="Jwelary", Value="Jwelary"}
+
+                                }, "Please select", new { @class = "form-control input-lg" })
+                                        </div>
+                                    </div>
+                                </div>
+
+                            *@
+
+                            <hr />
+                            <div class="row row-space">
+
+                                <div class="col-2">
+                                    <div class="input-group">
+                                        <label class="label">Owner Name</label>
+
+                                        @Html.TextBoxFor(model => model.OwnerName, new { @class = "input--style-4", @Value = ViewBag.username })
+                                        @Html.ValidationMessageFor(model => model.OwnerName)
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <div class="input-group">
+                                        <label class="label">Cell No</label>
+
+                                        @Html.TextBoxFor(model => model.CellNo, new { @class = "input--style-4", @Value = ViewBag.cellno })
+                                        @Html.ValidationMessageFor(model => model.CellNo)
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <div class="input-group">
+                                        <label class="label">Addrerss</label>
+
+                                        @Html.TextBoxFor(model => model.OwnerAddress, new { @class = "input--style-4", @Value = ViewBag.address })
+                                        @Html.ValidationMessageFor(model => model.OwnerAddress)
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="p-t-15">
+                                <br />
+
+
+                                <input type="submit" id="" value="Create" class="btn btn--radius-2 btn--blue" />
+                            </div>
+
+
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    <script src=@Url.Content("~/Content/regform/vendor/jquery/jquery.min.js")></script>
+    <!-- Vendor JS-->
+    <script src=@Url.Content("~/Content/regform/vendor/select2/select2.min.js")></script>
+    <script src=@Url.Content("~/Content/regform/vendor/datepicker/moment.min.js")></script>
+    <script src=@Url.Content("~/Content/regform/vendor/datepicker/daterangepicker.js")></script>
+    <!-- Main JS-->
+    <script src=@Url.Content("~/Content/regform/js/global.js")></script>
+
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+</body>
+</html>

@@ -1,0 +1,55 @@
+﻿@model LOF.AdminLoginTbl
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <style >
+        
+    </style>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+
+    <meta name="viewport" content="width=device-width" />
+</head>
+<body>
+    @using (Html.BeginForm()) 
+    {
+        @Html.AntiForgeryToken()
+        
+    <div class="form-horizontal">
+        <div class="jumbotron"><h3>Admin Login</h3></div>
+        <hr />
+        @Html.ValidationSummary(true)
+        <div class="col-xs-4">
+            <div class="form-group">
+                @Html.LabelFor(model => model.Username, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.Username, new { @class = "form-control input-sm" })
+                    @Html.ValidationMessageFor(model => model.Username)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.Password, new { @class = "form-control input-sm" })
+                    @Html.ValidationMessageFor(model => model.Password)
+                </div>
+            </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Submit" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+        }
+
+        <div>
+        </div>
+</body>
+</html>

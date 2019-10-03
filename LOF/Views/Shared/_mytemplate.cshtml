@@ -1,0 +1,720 @@
+﻿@model  LOF.ViewModel.Home
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Bootshop online Shopping cart</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+
+    <link id="callCss" rel="stylesheet" href="@Url.Content("~/Content/mytemplate/themes/bootshop/bootstrap.min.css")" media="screen" />
+    <link href="@Url.Content("~/Content/mytemplate/themes/css/base.css")" type="text/css" rel="stylesheet" media="screen" />
+    <link href="@Url.Content("~/Content/mytemplate")" type="text/css" rel="stylesheet" media="screen" />
+
+    <!-- Bootstrap style responsive -->
+    <link href="@Url.Content("~/Content/mytemplate/themes/css/bootstrap-responsive.min.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/mytemplate/themes/css/font-awesome.css")" rel="stylesheet" type="text/css" />
+    <!-- Google-code-prettify -->
+    <link href="@Url.Content("~/Content/mytemplate/themes/js/google-code-prettify/prettify.css")" rel="stylesheet" />
+    <!-- fav and touch icons -->
+    <link rel="shortcut icon" href="@Url.Content("~/Content/mytemplate/themes/images/ico/favicon.ico")">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="@Url.Content("~/Content/mytemplate/themes/images/ico/apple-touch-icon-144-precomposed.png")">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="@Url.Content("~/Content/mytemplate/themes/images/ico/apple-touch-icon-114-precomposed.png")">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="@Url.Content("~/Content/mytemplate/themes/images/ico/apple-touch-icon-72-precomposed.png")">
+    <link rel="apple-touch-icon-precomposed" href="@Url.Content("~/Content/mytemplate/themes/images/ico/apple-touch-icon-57-precomposed.png")">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    @* <script src=@Url.Content("~/Content/GoogleNexusWebsiteMenu/js/modernizr.custom.js")></script>
+        <link rel="stylesheet" type="text/css" href=@Url.Content("~/Content/GoogleNexusWebsiteMenu/css/normalize.css") />
+        <link rel="stylesheet" type="text/css" href=@Url.Content("~/Content/GoogleNexusWebsiteMenu/css/demo.css") />
+        <link rel="stylesheet" type="text/css" href=@Url.Content("~/Content/GoogleNexusWebsiteMenu/css/component.css" )/>
+    *@
+    <link rel="stylesheet" href=@Url.Content("~/Content/cssmenu/styles.css")>
+
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+    <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+    <script src=@Url.Content("~/Content/cssmenu/script.js")></script>
+    <style>
+        #back {
+            color: aquamarine;
+        }
+    
+        li {
+            margin: 10px 0;
+            font-family: serif;
+        }
+       
+
+    </style>
+
+    <!-- css code----------------------------------- -->
+
+
+</head>
+<body >
+    <!-- Header End====================================================================== -->
+
+    <div id="mainBody">
+        <div class="container">
+            @*
+                <ul id="gn-menu" class="gn-menu-main">
+                    <li class="gn-trigger">
+                        <a class="gn-icon gn-icon-menu"><span>Menu</span></a>
+                        <nav class="gn-menu-wrapper">
+                            <div class="gn-scroller">
+                                <ul class="gn-menu">
+                                    <li class="gn-search-item">
+                                        <input placeholder="Search" type="search" class="gn-search">
+                                        <a class="gn-icon gn-icon-search"><span>Search</span></a>
+                                    </li>
+                                    <li>
+                                        <a class="gn-icon gn-icon-download">Downloads</a>
+                                        <ul class="gn-submenu">
+                                            <li><a class="gn-icon gn-icon-illustrator">Vector Illustrations</a></li>
+                                            <li><a class="gn-icon gn-icon-photoshop">Photoshop files</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a class="gn-icon gn-icon-cog">Settings</a></li>
+                                    <li><a class="gn-icon gn-icon-help">Help</a></li>
+                                    <li>
+                                        <a class="gn-icon gn-icon-archive">Archives</a>
+                                        <ul class="gn-submenu">
+                                            <li><a class="gn-icon gn-icon-article">Articles</a></li>
+                                            <li><a class="gn-icon gn-icon-pictures">Images</a></li>
+                                            <li><a class="gn-icon gn-icon-videos">Videos</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div><!-- /gn-scroller -->
+                        </nav>
+                    </li>
+                    <li><a href="http://tympanus.net/codrops">Codrops</a></li>
+                    <li><a class="codrops-icon codrops-icon-prev" href="http://tympanus.net/Development/HeaderEffects/"><span>Previous Demo</span></a></li>
+                    <li><a class="codrops-icon codrops-icon-drop" href="http://tympanus.net/codrops/?p=16030"><span>Back to the Codrops Article</span></a></li>
+                </ul>
+            *@
+
+            @*   <nav class="navbar navbar-default">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <a class="navbar-brand active" href="@Url.Content("~/Template/Index")">Lost Or Found</a>
+                        </div>
+                        <ul class="nav navbar-nav">
+                            <li><a class="navbar-brand active" href="@Url.Content("~/Allproducts/Index")">All Products</a></li>
+                            <li><a class="navbar-brand active" href="@Url.Content("~/FoundProducts/Create")">Found Anything??</a></li>
+                            <li><a class="navbar-brand active" href="@Url.Content("~/LostProducts/Create")">Lost Anything??</a></li>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+
+                            <li><a class="navbar-brand active" href="@Url.Content("~/Account/Register")">Register</a></li>
+                            <li><a class="navbar-brand active" href="@Url.Content("~/Account/Login")">Login</a></li>
+
+
+                        </ul>
+                    </div>
+                </nav>
+            *@
+            <div id='cssmenu'>
+                <ul>
+                    <li class='active'><a href="@Url.Content("~/Template/Index")">Lost & Found</a></li>
+                    <li><a class="back" href="@Url.Content("~/FoundProducts/Create")">Found Anything ?</a></li>
+                    <li><a class="back" href="@Url.Content("~/LostProducts/Create")">Lost Anything ?</a></li>
+                    <li><a class="back" href="@Url.Content("~/AllProducts/Index")">All Products</a></li>
+                    <li><a class="back" href="@Url.Content("~/FoundProducts/Index")">Found Products</a></li>
+                    <li><a class="back" href="@Url.Content("~/LostProducts/Index")">Lost Products</a></li>
+
+
+
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+
+                    <li><a class="" href="@Url.Content("~/Account/Register")">Register</a></li>
+                    <li class='active'><a href="@Url.Content("~/Account/Login")">Login</a></li>
+
+
+                </ul>
+            </div>
+
+
+            <div class="row">
+                <!-- Sidebar ================================================== -->
+                <div id="sidebar" class="col-md-2" style="margin-top:80px;">
+                    <form>
+                        <div class="radio">
+                            <label>   <input type="radio" onclick="window.location='@Url.Content("~/Allproducts/Index")';" name="options"> All Products</label>
+                        </div>
+                        <div class="radio">
+                            <label>   <input type="radio" onclick="window.location='@Url.Content("~/Foundproducts/Index")';" name="options"> Found Products</label>
+                        </div>
+                        <div class="radio">
+                            <label><input type="radio" onclick="window.location='@Url.Content("~/Lostproducts/Index")';" name="optradio">Lost Products</label>
+                        </div>
+
+                    </form>
+                </div>
+                <!--   chart-->
+                <div class="col-md-5">
+                    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+                    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+                    <script type="text/javascript">
+                        google.load("visualization", "1", { packages: ["corechart"] });
+                        google.setOnLoadCallback(drawChart);
+                        function drawChart() {
+                            $.ajax({
+                                type: "POST",
+                                url: "/Template/AjaxMethod",
+                                data: '{}',
+                                contentType: "application/json; charset=utf-8",
+                                dataType: "json",
+                                success: function (r) {
+                                    var data = google.visualization.arrayToDataTable(r);
+
+                                    //Pie
+                                    var options = {
+                                        title: 'Products Location Distribution'
+                                    };
+                                    var chart = new google.visualization.PieChart($("#chart")[0]);
+                                    chart.draw(data, options);
+                                },
+                                failure: function (r) {
+                                    alert(r.d);
+                                },
+                                error: function (r) {
+                                    alert(r.d);
+                                }
+                            });
+                        }
+                    </script>
+                    <div id="chart" style="width: 700px; height: 500px;">
+                    </div>
+                </div>
+                <!--  chart end-->
+
+                <div class="col-md-3" style="margin-top:50px;margin-left:190px;">
+                    <ul id="sidebar" class="nav nav-tabs nav-stacked">
+
+                        <li class="subMenu open">
+                            <a><h4> LOCATION </h4></a>
+                            <br />
+                            <ul>
+                                <li class="line"><a class="active" href="@Url.Content("~/Allproducts/Index?divisionsrch=Dhaka")"><i class="icon-chevron-right"></i>DHAKA </a></li>
+
+
+                                <li class="line"><a href="@Url.Content("~/Allproducts/Index?divisionsrch=Khulna")"><i class="icon-chevron-right"></i>KHULNA </a></li>
+                                <li class="line"><a href="@Url.Content("~/Allproducts/Index?divisionsrch=Barisal")"><i class="icon-chevron-right"></i>BARISAL</a></li>
+                                <li class="line"><a href="@Url.Content("~/Allproducts/Index?divisionsrch=Chittagong")"><i class="icon-chevron-right"></i>CHITTAGONG </a></li>
+                                <li class="line"><a href="@Url.Content("~/Allproducts/Index?divisionsrch=Rajshahi")"><i class="icon-chevron-right"></i>RAJSHAHI </a></li>
+                                <li class="line"><a href="@Url.Content("~/Allproducts/Index?divisionsrch=Rangpur")"><i class="icon-chevron-right"></i>RANGPUR</a></li>
+                                <li class="line"><a href="@Url.Content("~/Allproducts/Index?divisionsrch=Shylet")"><i class="icon-chevron-right"></i>SHYlET </a></li>
+
+                            </ul>
+                        </li>
+                    </ul>
+
+
+
+                </div>
+                <br />
+
+
+            </div>
+
+
+
+
+
+
+
+            <div class="row">
+                <!-- Sidebar end=============================================== -->
+                <div class="col-md-12">
+                    <div class="col-xs-9 col-sm-4 col-md-3">
+                        <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
+                            <div class="mainflip">
+                                <div class="frontside">
+                                    <div class="card">
+                                        <div class="card-body text-center">
+                                            <p><img class=" img-fluid" src="https://images.pexels.com/photos/122400/pexels-photo-122400.jpeg" alt="card image"></p>
+
+                                            <h4 class="card-title">Camera</h4>
+                                            <p class="card-text">Browse All Cameras</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="backside">
+                                    <div class="card">
+                                        <div class="card-body text-center mt-4">
+                                            <h4 class="card-title">Camera</h4>
+                                            <p class="card-text">Browse here for all founded and losted camera</p>
+                                            <button class="btn btn-primary" onclick="window.location.href='@Url.Content("~/Allproducts/Index?subcategorysrch=Cameras")'">view</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ./Team member -->
+                    <!-- Team member -->
+                    <div class="col-xs-9 col-sm-4 col-md-3">
+                        <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
+                            <div class="mainflip">
+                                <div class="frontside">
+                                    <div class="card">
+                                        <div class="card-body text-center">
+                                            <p><img class=" img-fluid" src="http://i.imgur.com/opiob6b.png" alt="card image"></p>
+
+                                            <h4 class="card-title">Computers, Tablets & laptop </h4>
+                                            <p class="card-text">Browse All Computers, Tablets & laptop </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="backside">
+                                    <div class="card">
+                                        <div class="card-body text-center mt-4">
+                                            <h4 class="card-title">Computers, Tablets & laptop </h4>
+                                            <p class="card-text">Browse here for all founded and losted computers,tablet & laptop</p>
+                                            <button class="btn btn-primary" onclick="window.location.href='@Url.Content("~/Allproducts/Index?subcategorysrch=Computers, Tablets & laptop")'">view</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ./Team member -->
+                    <!-- Team member -->
+                    <div class="col-xs-9 col-sm-4 col-md-3">
+                        <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
+                            <div class="mainflip">
+                                <div class="frontside">
+                                    <div class="card">
+                                        <div class="card-body text-center">
+                                            <p><img class=" img-fluid" src=@Url.Content("~/Content/Vivo-Y83.jpg") alt="card image"></p>
+
+                                            <h4 class="card-title">Mobile Phone</h4>
+                                            <p class="card-text">Browse All Mobile phone </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="backside">
+                                    <div class="card">
+                                        <div class="card-body text-center mt-4">
+                                            <h4 class="card-title">Mobile Phone </h4>
+                                            <p class="card-text">Browse here for all founded and losted Mobile phone</p>
+                                            <button class="btn btn-primary" onclick="window.location.href='@Url.Content("~/Allproducts/Index?subcategorysrch=Mobile Phone")'">view</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ./Team member -->
+                    <!-- Team member -->
+                    <div class="col-xs-9 col-sm-4 col-md-3">
+                        <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
+                            <div class="mainflip">
+                                <div class="frontside">
+                                    <div class="card">
+                                        <div class="card-body text-center">
+                                            <p><img class=" img-fluid" src="https://www.condorferries.co.uk/media/2455/taking-your-pet-5.jpg" alt="card image"></p>
+
+                                            <h4 class="card-title">Pet </h4>
+                                            <p class="card-text">Browse All Pets </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="backside">
+                                    <div class="card">
+                                        <div class="card-body text-center mt-4">
+                                            <h4 class="card-title">Pet </h4>
+                                            <p class="card-text">Browse here for all founded and losted Pets</p>
+                                            <button class="btn btn-primary" onclick="window.location.href='@Url.Content("~/Allproducts/Index?movieC=Pet")'">view</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ./Team member -->
+                    <!-- Team member -->
+                    <div class="col-xs-9 col-sm-4 col-md-3">
+                        <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
+                            <div class="mainflip">
+                                <div class="frontside">
+                                    <div class="card">
+                                        <div class="card-body text-center">
+                                            <p><img class=" img-fluid" src="http://www.stratfordny.com/Graphics/documents.png" alt="card image"></p>
+
+                                            <h4 class="card-title">Document </h4>
+                                            <p class="card-text">Browse All Documents </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="backside">
+                                    <div class="card">
+                                        <div class="card-body text-center mt-4">
+                                            <h4 class="card-title">Document </h4>
+                                            <p class="card-text">Browse here for all founded and losted Documents</p>
+                                            <button class="btn btn-primary" onclick="window.location.href='@Url.Content("~/Allproducts/Index?movieC=Document")'">view</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ./Team member -->
+                    <!-- Team member -->
+                    <div class="col-xs-9 col-sm-4 col-md-3">
+                        <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
+                            <div class="mainflip">
+                                <div class="frontside">
+                                    <div class="card">
+                                        <div class="card-body text-center">
+                                            <p><img class="img-fluid" src="http://cliparts.co/cliparts/kc8/o5r/kc8o5rqri.svg" alt="card image"></p>
+
+                                            <h4 class="card-title">Human</h4>
+                                            <p class="card-text">Browse All Founded and losted humen </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="backside">
+                                    <div class="card">
+                                        <div class="card-body text-center mt-4">
+                                            <h4 class="card-title">Human</h4>
+                                            <p class="card-text">Browse All Founded and losted humen</p>
+                                            <button class="btn btn-primary" onclick="window.location.href='@Url.Content("~/Allproducts/Index?movieC=Human")'">view</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-xs-9 col-sm-4 col-md-3">
+                        <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
+                            <div class="mainflip">
+                                <div class="frontside">
+                                    <div class="card">
+                                        <div class="card-body text-center">
+                                            <p><img class=" img-fluid" src="http://othersfoundation.org/wp-content/uploads/2018/11/others.png" alt="card image"></p>
+
+                                            <h4 class="card-title">Others</h4>
+                                            <p class="card-text">Browse All Founded and losted jwelary,music instruments,sports equipments </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="backside">
+                                    <div class="card">
+                                        <div class="card-body text-center mt-4">
+                                            <h4 class="card-title">Others</h4>
+                                            <p class="card-text">Browse All Founded and losted jwelary,music instruments,sports equipments</p>
+                                            <button class="btn btn-primary" onclick="window.location.href='@Url.Content("~/Allproducts/Index?movieC=Others")'">view</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-xs-9 col-sm-4 col-md-3">
+                        <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
+                            <div class="mainflip">
+                                <div class="frontside">
+                                    <div class="card">
+                                        <div class="card-body text-center">
+                                            <p><img class=" img-fluid" src="https://wcs.smartdraw.com/certificate/img/certificate-1.jpg?bn=1510011144" alt="card image"></p>
+
+                                            <h4 class="card-title">Certificate</h4>
+                                            <p class="card-text">Browse All Certificates here </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="backside">
+                                    <div class="card">
+                                        <div class="card-body text-center mt-4">
+                                            <h4 class="card-title">Certificate</h4>
+                                            <p class="card-text">Browse here for all founded and losted Certificates</p>
+                                            <button class="btn btn-primary" onclick="window.location.href='@Url.Content("~/Allproducts/Index?subcategorysrch=Certificate")'">view</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- cards ================================================================== -->
+            <div class="col-md-12">
+
+                <div class="well well-small">
+                    <h4> Top Founded Products <small class="pull-right"> </small></h4>
+
+
+                    <div class="row-fluid">
+                        <div id="featured" class="carousel slide">
+                            <div class="carousel-inner">
+                                <div class="item active">
+
+                                    <ul class="thumbnails">
+                                        @{
+                                            int counter = 0;
+                                            foreach (var Topfound in Model.Topfound)
+
+                                            {
+                                                counter++;
+                                                if (counter >= 1 && counter < 4)
+                                                {
+                                                    <li class="col-md-3">
+
+                                                        <div class="thumbnail">
+
+
+
+                                                            <a><img src="@Url.Content(Topfound.Image)" width="800" height="600"></a>
+                                                            <div class="caption">
+                                                                <h4>
+                                                                    @Html.DisplayFor(modelItem => Topfound.Title)
+                                                                </h4>
+                                                                @Html.ActionLink("View", "Details", "Template", new { id = Topfound.Id }, new { @class = "btn btn-primary" }) <span class="pull-right"></span>
+
+                                                            </div>
+
+                                                        </div>
+                                                    </li>
+                                                }
+                                            }
+                                        }
+                                    </ul>
+                                </div>
+                                <div class="item">
+                                    <ul class="thumbnails">
+                                        @{
+                                            int counters = 0;
+                                            foreach (var Topfound in Model.Topfound)
+                                            {
+                                                counters++;
+                                                if (counters >= 4 && counters < 7)
+                                                {
+
+
+                                                    <li class="col-md-3">
+
+                                                        <div class="thumbnail">
+
+
+
+                                                            <a><img src="@Url.Content(Topfound.Image)" width="800" height="600"></a>
+                                                            <div class="caption">
+                                                                <h4>
+                                                                    @Html.DisplayFor(modelItem => Topfound.Title)
+                                                                </h4>
+                                                                @Html.ActionLink("View", "Details", "Template", new { id = Topfound.Id }, new { @class = "btn btn-primary" }) <span class="pull-right"></span>
+
+                                                            </div>
+
+                                                        </div>
+                                                    </li>
+                                                }
+                                            }
+                                        }
+                                    </ul>
+                                </div>
+
+
+
+
+
+
+                            </div>
+
+
+
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="well well-small">
+
+                    <h4>Top Losted Products <small class="pull-right"></small></h4>
+
+                    <div class="row-fluid">
+                        <div id="myCarousel" class="carousel slide">
+                            <div class="carousel-inner">
+                                <div class="item active">
+
+                                    <ul class="thumbnails">
+                                        @{
+                                            int count = 0;
+                                            foreach (var Toplost in Model.Toplost)
+
+                                            {
+                                                count++;
+                                                if (count >= 1 && count < 4)
+                                                {
+                                                    <li class="col-md-3">
+
+                                                        <div class="thumbnail">
+
+
+
+                                                            <a><img src="@Url.Content(Toplost.Image)" width="800" height="600"></a>
+                                                            <div class="caption">
+                                                                <h4>
+                                                                    @Html.DisplayFor(modelItem => Toplost.Title)
+                                                                </h4>
+                                                                @Html.ActionLink("View", "DetailsTopLost", "Template", new { id = Toplost.Id }, new { @class = "btn btn-primary" }) <span class="pull-right"></span>
+
+                                                            </div>
+
+                                                        </div>
+                                                    </li>
+                                                }
+                                            }
+                                        }
+                                    </ul>
+                                </div>
+                                <div class="item">
+                                    <ul class="thumbnails">
+                                        @{
+                                            int counts = 0;
+                                            foreach (var Toplost in Model.Toplost)
+                                            {
+                                                counts++;
+                                                if (counts >= 4 && counts < 7)
+                                                {
+
+
+                                                    <li class="col-md-3">
+
+                                                        <div class="thumbnail">
+
+
+
+                                                            <a><img src="@Url.Content(Toplost.Image)" width="800" height="600"></a>
+                                                            <div class="caption">
+                                                                <h4>
+                                                                    @Html.DisplayFor(modelItem => Toplost.Title)
+                                                                </h4>
+
+                                                                @Html.ActionLink("View", "DetailsTopLost", "Template", new { id = Toplost.Id }, new { @class = "btn btn-primary" }) <span class="pull-right"></span>
+
+                                                            </div>
+
+                                                        </div>
+                                                    </li>
+                                                }
+                                            }
+                                        }
+                                    </ul>
+                                </div>
+
+
+
+
+
+
+                            </div>
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+            <!-- cards ================================================================== -->
+
+        </div>
+    </div>
+    <!-- Footer ================================================================== -->
+    <div id="footerSection">
+        <div class="container">
+            <div class="row">
+                <div class="span3">
+                    <h5>ACCOUNT</h5>
+                    <a href="@Url.Content("~/AdminApproval/CreateForm")">Admin Zone</a>
+                    <a href="login.html">YOUR ACCOUNT</a>
+                    <a href="login.html">PERSONAL INFORMATION</a>
+                    <a href="login.html">ADDRESSES</a>
+                    <a href="login.html">DISCOUNT</a>
+                    <a href="login.html">ORDER HISTORY</a>
+                </div>
+                <div class="span3">
+                    <h5>INFORMATION</h5>
+                    <a href="contact.html">CONTACT</a>
+                    <a href="register.html">REGISTRATION</a>
+                    <a href="legal_notice.html">LEGAL NOTICE</a>
+                    <a href="tac.html">TERMS AND CONDITIONS</a>
+                    <a href="faq.html">FAQ</a>
+                </div>
+                <div class="span3">
+                    <h5>OUR OFFERS</h5>
+                    <a href="#">NEW PRODUCTS</a>
+                    <a href="#">TOP SELLERS</a>
+                    <a href="special_offer.html">SPECIAL OFFERS</a>
+                    <a href="#">MANUFACTURERS</a>
+                    <a href="#">SUPPLIERS</a>
+                </div>
+                <div id="socialMedia" class="span3 pull-right">
+                    <h5>SOCIAL MEDIA </h5>
+                    <a href="#"><img width="60" height="60" src="@Url.Content("~/Content/mytemplate/themes/images/facebook.png")" title="facebook" alt="facebook" /></a>
+                    <a href="#"><img width="60" height="60" src="@Url.Content("~/Content/mytemplate/themes/images/facebook.png")" title="twitter" alt="twitter" /></a>
+                    <a href="#"><img width="60" height="60" src="@Url.Content("~/Content/mytemplate/themes/images/youtube.png")" title="youtube" alt="youtube" /></a>
+                </div>
+            </div>
+            <p class="pull-right">&copy; Bootshop</p>
+        </div><!-- Container End -->
+    </div>
+
+
+
+
+
+
+
+    <!-- Placed at the end of the document so the pages load faster ============================================= -->
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js">
+    </script>
+    <script src="@Url.Content("~/Content/mytemplate/themes/js/jquery.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Content/mytemplate/themes/js/bootstrap.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Content/mytemplate/themes/js/google-code-prettify/prettify.js")"></script>
+
+    <script src="@Url.Content("~/Content/mytemplate/themes/js/bootshop.js")"></script>
+    <script src="@Url.Content("~/Content/mytemplate/themes/js/jquery.lightbox-0.5.js")"></script>
+
+    <!-- Themes switcher section ============================================================================================= -->
+    <!--  nav js-->
+    @* <script src=@Url.Content("~/Content/GoogleNexusWebsiteMenu/js/classie.js")></script>
+        <script src="@Url.Content("~/Content/GoogleNexusWebsiteMenu/js/gnmenu.js")></script>
+        <script>
+            new gnMenu(document.getElementById('gn-menu'));
+        </script>
+    *@
+    <!--end nav js-->
+    <div>
+        @RenderBody()
+    </div>
+</body>
+</html>
