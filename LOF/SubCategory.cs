@@ -17,18 +17,20 @@ namespace LOF
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public SubCategory()
         {
+            this.AdminApprovalTbls = new HashSet<AdminApprovalTbl>();
             this.AllProductsTbls = new HashSet<AllProductsTbl>();
             this.Foundtbls = new HashSet<Foundtbl>();
             this.Losttbls = new HashSet<Losttbl>();
             this.Topfoundtbls = new HashSet<Topfoundtbl>();
             this.TopLosttbls = new HashSet<TopLosttbl>();
-            this.AdminApprovalTbls = new HashSet<AdminApprovalTbl>();
         }
     
         public int SubCategoryId { get; set; }
         public string SubCategoryName { get; set; }
         public int CategoryId { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AdminApprovalTbl> AdminApprovalTbls { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AllProductsTbl> AllProductsTbls { get; set; }
         public virtual Category Category { get; set; }
@@ -40,7 +42,5 @@ namespace LOF
         public virtual ICollection<Topfoundtbl> Topfoundtbls { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TopLosttbl> TopLosttbls { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<AdminApprovalTbl> AdminApprovalTbls { get; set; }
     }
 }

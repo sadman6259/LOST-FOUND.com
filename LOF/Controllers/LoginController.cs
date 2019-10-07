@@ -12,7 +12,7 @@ namespace LOF.Controllers
 {
     public class LoginController : Controller
     {
-        private LOFDbEntities5 db = new LOFDbEntities5();
+        private LOFDbEntities6 db = new LOFDbEntities6();
 
         // GET: Login
         public ActionResult Index()

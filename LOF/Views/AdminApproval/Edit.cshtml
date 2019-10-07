@@ -112,7 +112,13 @@
                         @Html.ValidationMessageFor(model => model.DateOfLost)
                     </div>
                 </div>
-
+                <div class="form-group">
+                    @Html.LabelFor(model => model.UniqueKey, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.UniqueKey, new { @class = "form-control input-lg" })
+                        @Html.ValidationMessageFor(model => model.UniqueKey)
+                    </div>
+                </div>
                 <div class="form-group">
                     @Html.LabelFor(model => model.Details, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">

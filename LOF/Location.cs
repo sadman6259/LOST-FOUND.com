@@ -17,18 +17,20 @@ namespace LOF
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Location()
         {
+            this.AdminApprovalTbls = new HashSet<AdminApprovalTbl>();
             this.AllProductsTbls = new HashSet<AllProductsTbl>();
             this.Foundtbls = new HashSet<Foundtbl>();
             this.Losttbls = new HashSet<Losttbl>();
             this.SubLocations = new HashSet<SubLocation>();
             this.Topfoundtbls = new HashSet<Topfoundtbl>();
             this.TopLosttbls = new HashSet<TopLosttbl>();
-            this.AdminApprovalTbls = new HashSet<AdminApprovalTbl>();
         }
     
         public int LocationId { get; set; }
         public string LocationName { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AdminApprovalTbl> AdminApprovalTbls { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AllProductsTbl> AllProductsTbls { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -41,7 +43,5 @@ namespace LOF
         public virtual ICollection<Topfoundtbl> Topfoundtbls { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TopLosttbl> TopLosttbls { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<AdminApprovalTbl> AdminApprovalTbls { get; set; }
     }
 }

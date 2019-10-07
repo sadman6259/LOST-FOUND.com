@@ -12,7 +12,7 @@ namespace LOF.Controllers
 {
     public class AllproductsController : Controller
     {
-        private LOFDbEntities5 db = new LOFDbEntities5();
+        private LOFDbEntities6 db = new LOFDbEntities6();
 
         // GET: Allproducts
         public ActionResult Index(string searchString, string subcategorysrch,string divisionsrch, string locationsrch, string movieC, string sortOrder, string currentFilter, int? page)
@@ -120,25 +120,43 @@ namespace LOF.Controllers
                 .Where(x => x.Id == id)
                .Select(x => x.SubCategory1.SubCategoryName)
                 .FirstOrDefault();
+            if (allproductstbl.UniqueKey != null) {
+                TempData["Uniquekey"] = db.AllProductsTbls
+                 .Where(x => x.Id == id)
+                .Select(x => x.UniqueKey)
+                 .FirstOrDefault();
+            }
             return View(allproductstbl);
         }
         public ActionResult Matchedproducts(string sortOrder, string title, int? Id)
         {
-
+            if (TempData["Uniquekey"] == null)
+            {
+                return RedirectToAction("NotFound");
+            }
             string Title = TempData["Title"].ToString();
             string Location = TempData["Location"].ToString();
             string SubLocation = TempData["SubLocation"].ToString();
             string Details = TempData["Details"].ToString();
             string SubCategory = TempData["SubCategory"].ToString();
-
+          
+                int uniquekey = (int)TempData["Uniquekey"];
+            
 
             ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
 
-            var movies = from m in db.AllProductsTbls
-                         where  ((m.SubCategory1.SubCategoryName.Contains(SubCategory))&&(m.Title.Contains(Title)||m.Location1.LocationName.Contains(Location) || m.SubLocation1.SubLocationName.Contains(SubLocation)|| m.Details.Contains(Details)))
-                         select m;
+            /*     var movies = from m in db.AllProductsTbls
+                              where  ((m.SubCategory1.SubCategoryName.Contains(SubCategory))&&(m.Title.Contains(Title)||m.Location1.LocationName.Contains(Location) || m.SubLocation1.SubLocationName.Contains(SubLocation)|| m.Details.Contains(Details)))
+                              select m;
+                              */
+          
 
-           switch (sortOrder)
+                var movies = from m in db.AllProductsTbls
+                             where (m.UniqueKey == uniquekey)
+                             select m;
+            
+
+            switch (sortOrder)
             {
 
                 case "Date":
@@ -152,6 +170,10 @@ namespace LOF.Controllers
                     break;
             }
             return View(movies.ToList());
+        }
+        public ActionResult NotFound()
+        {
+            return View();
         }
 
 

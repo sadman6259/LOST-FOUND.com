@@ -186,24 +186,24 @@
 <body>
     <div class="container">
         @*  <nav class="navbar navbar-default">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <a class="navbar-brand active" href="@Url.Content("~/Template/Index")">Lost Or Found</a>
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="navbar-brand active" href="@Url.Content("~/Template/Index")">Lost Or Found</a>
+                    </div>
+                    <ul class="nav navbar-nav">
+                        <li><a class="navbar-brand active" href="@Url.Content("~/Allproducts/Index")">All Products</a></li>
+                        <li><a class="navbar-brand active" href="@Url.Content("~/FoundProducts/Create")">Found Anything??</a></li>
+                        <li><a class="navbar-brand active" href="@Url.Content("~/LostProducts/Create")">Lost Anything??</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+
+                        <li><a class="navbar-brand active" href="@Url.Content("~/Account/Register")">Register</a></li>
+                        <li><a class="navbar-brand active" href="@Url.Content("~/Account/Login")">Login</a></li>
+
+
+                    </ul>
                 </div>
-                <ul class="nav navbar-nav">
-                    <li><a class="navbar-brand active" href="@Url.Content("~/Allproducts/Index")">All Products</a></li>
-                    <li><a class="navbar-brand active" href="@Url.Content("~/FoundProducts/Create")">Found Anything??</a></li>
-                    <li><a class="navbar-brand active" href="@Url.Content("~/LostProducts/Create")">Lost Anything??</a></li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-
-                    <li><a class="navbar-brand active" href="@Url.Content("~/Account/Register")">Register</a></li>
-                    <li><a class="navbar-brand active" href="@Url.Content("~/Account/Login")">Login</a></li>
-
-
-                </ul>
-            </div>
-        </nav>
+            </nav>
         *@
         <div id='cssmenu'>
             <ul>
@@ -242,7 +242,7 @@
 
 
                 <h6 class="title-price"><small>CATEGORY</small></h6>
-                <h3 style="margin-top:0px;">
+                <h3 style="margin-top:0px;" id="Category">
                     @Html.DisplayFor(model => model.Category1.CategoryName)
                 </h3>
 
@@ -282,7 +282,7 @@
                     @Html.DisplayFor(model => model.OwnerAddress)
                 </h3>
                 <div>
-                    @Html.ActionLink("Matched Products", "Matchedproducts", "Allproducts", new { @class = "btn btn-primary" }) <span class="pull-right"></span>
+                    @Html.ActionLink("Matched Products", "Matchedproducts", "Allproducts", new { @class = "btn btn-primary", @id = "matched" }) <span class="pull-right"></span>
                 </div>
             </div>
             <div class="col-xs-9">
@@ -304,5 +304,6 @@
             </div>
         </div>
     </div>
-</body>
-</html>
+
+</body >
+</html >

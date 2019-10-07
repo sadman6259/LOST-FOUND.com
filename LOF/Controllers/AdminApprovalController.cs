@@ -12,7 +12,7 @@ namespace LOF.Controllers
 {
     public class AdminApprovalController : Controller
     {
-        private LOFDbEntities5 db = new LOFDbEntities5();
+        private LOFDbEntities6 db = new LOFDbEntities6();
 
         // GET: AdminApproval
         public ActionResult Index()
@@ -91,12 +91,14 @@ namespace LOF.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Title,Image,Type,Category,SubCategory,Location,SubLocation,DateOfFound,DateOfLost,Details,OwnerName,CellNo,OwnerAddress,CategoryId,SubCategoryId,LocationId,SubLocationId")] AdminApprovalTbl appoval, AllProductsTbl adminApprovalTbl,Foundtbl foundtbl,Losttbl losttbl,Topfoundtbl topfoundtbl,TopLosttbl toplosttbl)
+        public ActionResult Edit([Bind(Include = "Id,Title,Image,Type,Category,SubCategory,Location,SubLocation,DateOfFound,DateOfLost,FoundId,LostId,Details,OwnerName,CellNo,CategoryId,SubCategoryId,LocationId,SubLocationId,OwnerAddress,UniqueKey")] AdminApprovalTbl appoval, AllProductsTbl adminApprovalTbl,Foundtbl foundtbl,Losttbl losttbl,Topfoundtbl topfoundtbl,TopLosttbl toplosttbl)
         {
             if (ModelState.IsValid)
             {
 
-                if(appoval.Type == "FOUNDED"){
+                if(appoval.Type == "FOUNDED")
+                {
+
                     db.AllProductsTbls.Add(adminApprovalTbl);
                     db.Foundtbls.Add(foundtbl);
 
@@ -129,7 +131,10 @@ namespace LOF.Controllers
 
               //  db.Entry(adminApprovalTbl).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("CreateConfirm");
+           
+                
+                    return RedirectToAction("CreateConfirm");
+                
             }
             ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId", "CategoryName", adminApprovalTbl.CategoryId);
             ViewBag.LocationId = new SelectList(db.Locations, "LocationId", "LocationName", adminApprovalTbl.LocationId);

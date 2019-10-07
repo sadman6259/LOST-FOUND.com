@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="LOFDbModel1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="LOFDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AdminApprovalTbl">
           <Key>
             <PropertyRef Name="Id" />
@@ -27,12 +27,17 @@
           <Property Name="LocationId" Type="int" />
           <Property Name="SubLocationId" Type="int" />
           <Property Name="OwnerAddress" Type="varchar" MaxLength="50" />
+          <Property Name="UniqueKey" Type="int" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'LOFDb.dbo.AdminLoginTbl' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="AdminLoginTbl">
           <Key>
             <PropertyRef Name="Id" />
+            <PropertyRef Name="Username" />
+            <PropertyRef Name="Password" />
           </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="Username" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
@@ -60,6 +65,7 @@
           <Property Name="LocationId" Type="int" />
           <Property Name="SubLocationId" Type="int" />
           <Property Name="OwnerAddress" Type="varchar" MaxLength="50" />
+          <Property Name="UniqueKey" Type="int" />
         </EntityType>
         <EntityType Name="Category">
           <Key>
@@ -89,6 +95,7 @@
           <Property Name="LocationId" Type="int" />
           <Property Name="SubLocationId" Type="int" />
           <Property Name="OwnerAddress" Type="varchar" MaxLength="50" />
+          <Property Name="UniqueKey" Type="int" />
         </EntityType>
         <EntityType Name="Location">
           <Key>
@@ -127,6 +134,7 @@
           <Property Name="LocationId" Type="int" />
           <Property Name="SubLocationId" Type="int" />
           <Property Name="OwnerAddress" Type="varchar" MaxLength="50" />
+          <Property Name="UniqueKey" Type="int" />
         </EntityType>
         <EntityType Name="RegisterTbl">
           <Key>
@@ -179,6 +187,7 @@
           <Property Name="LocationId" Type="int" />
           <Property Name="SubLocationId" Type="int" />
           <Property Name="OwnerAddress" Type="varchar" MaxLength="50" />
+          <Property Name="UniqueKey" Type="int" />
         </EntityType>
         <EntityType Name="TopLosttbl">
           <Key>
@@ -202,6 +211,7 @@
           <Property Name="LocationId" Type="int" />
           <Property Name="SubLocationId" Type="int" />
           <Property Name="OwnerAddress" Type="varchar" MaxLength="50" />
+          <Property Name="UniueKey" Type="int" />
         </EntityType>
         <Association Name="FK_AdminApprovalTbl_Category">
           <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
@@ -575,9 +585,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="LOFDbModel1StoreContainer">
+        <EntityContainer Name="LOFDbModelStoreContainer">
           <EntitySet Name="AdminApprovalTbl" EntityType="Self.AdminApprovalTbl" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="AdminLoginTbl" EntityType="Self.AdminLoginTbl" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AllProductsTbl" EntityType="Self.AllProductsTbl" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Foundtbl" EntityType="Self.Foundtbl" Schema="dbo" store:Type="Tables" />
@@ -589,6 +598,13 @@
           <EntitySet Name="SubLocation" EntityType="Self.SubLocation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Topfoundtbl" EntityType="Self.Topfoundtbl" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TopLosttbl" EntityType="Self.TopLosttbl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AdminLoginTbl" EntityType="Self.AdminLoginTbl" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [AdminLoginTbl].[Id] AS [Id], 
+    [AdminLoginTbl].[Username] AS [Username], 
+    [AdminLoginTbl].[Password] AS [Password]
+    FROM [dbo].[AdminLoginTbl] AS [AdminLoginTbl]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_AdminApprovalTbl_Category" Association="Self.FK_AdminApprovalTbl_Category">
             <End Role="Category" EntitySet="Category" />
             <End Role="AdminApprovalTbl" EntitySet="AdminApprovalTbl" />
@@ -714,10 +730,39 @@
             <End Role="TopLosttbl" EntitySet="TopLosttbl" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="LOFDbModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="LOFDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AdminApprovalTbl">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Image" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Category" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SubCategory" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Location" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SubLocation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DateOfFound" Type="DateTime" Precision="3" />
+          <Property Name="DateOfLost" Type="DateTime" Precision="3" />
+          <Property Name="Details" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OwnerName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CellNo" Type="Int32" Nullable="false" />
+          <Property Name="CategoryId" Type="Int32" />
+          <Property Name="SubCategoryId" Type="Int32" />
+          <Property Name="LocationId" Type="Int32" />
+          <Property Name="SubLocationId" Type="Int32" />
+          <Property Name="OwnerAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UniqueKey" Type="Int32" />
+          <NavigationProperty Name="Category1" Relationship="Self.FK_AdminApprovalTbl_Category" FromRole="AdminApprovalTbl" ToRole="Category" />
+          <NavigationProperty Name="Location1" Relationship="Self.FK_AdminApprovalTbl_Location" FromRole="AdminApprovalTbl" ToRole="Location" />
+          <NavigationProperty Name="SubCategory1" Relationship="Self.FK_AdminApprovalTbl_SubCategory" FromRole="AdminApprovalTbl" ToRole="SubCategory" />
+          <NavigationProperty Name="SubLocation1" Relationship="Self.FK_AdminApprovalTbl_SubLocation" FromRole="AdminApprovalTbl" ToRole="SubLocation" />
+        </EntityType>
         <EntityType Name="AllProductsTbl">
           <Key>
             <PropertyRef Name="Id" />
@@ -741,13 +786,14 @@
           <Property Name="SubCategoryId" Type="Int32" />
           <Property Name="LocationId" Type="Int32" />
           <Property Name="SubLocationId" Type="Int32" />
+          <Property Name="OwnerAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UniqueKey" Type="Int32" />
           <NavigationProperty Name="Category1" Relationship="Self.FK_AllProductsTbl_Category" FromRole="AllProductsTbl" ToRole="Category" />
           <NavigationProperty Name="Foundtbl" Relationship="Self.FK_AllProductsTbl_Foundtbl" FromRole="AllProductsTbl" ToRole="Foundtbl" />
           <NavigationProperty Name="Location1" Relationship="Self.FK_AllProductsTbl_Location" FromRole="AllProductsTbl" ToRole="Location" />
           <NavigationProperty Name="Losttbl" Relationship="Self.FK_AllProductsTbl_Losttbl" FromRole="AllProductsTbl" ToRole="Losttbl" />
           <NavigationProperty Name="SubCategory1" Relationship="Self.FK_AllProductsTbl_SubCategory" FromRole="AllProductsTbl" ToRole="SubCategory" />
           <NavigationProperty Name="SubLocation1" Relationship="Self.FK_AllProductsTbl_SubLocation" FromRole="AllProductsTbl" ToRole="SubLocation" />
-          <Property Name="OwnerAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Category">
           <Key>
@@ -755,13 +801,13 @@
           </Key>
           <Property Name="CategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="AdminApprovalTbls" Relationship="Self.FK_AdminApprovalTbl_Category" FromRole="Category" ToRole="AdminApprovalTbl" />
           <NavigationProperty Name="AllProductsTbls" Relationship="Self.FK_AllProductsTbl_Category" FromRole="Category" ToRole="AllProductsTbl" />
           <NavigationProperty Name="Foundtbls" Relationship="Self.FK_Foundtbl_Category" FromRole="Category" ToRole="Foundtbl" />
           <NavigationProperty Name="Losttbls" Relationship="Self.FK_Losttbl_Category" FromRole="Category" ToRole="Losttbl" />
           <NavigationProperty Name="SubCategories" Relationship="Self.FK_SubCategory_Category" FromRole="Category" ToRole="SubCategory" />
           <NavigationProperty Name="Topfoundtbls" Relationship="Self.FK_Topfoundtbl_Category" FromRole="Category" ToRole="Topfoundtbl" />
           <NavigationProperty Name="TopLosttbls" Relationship="Self.FK_TopLosttbl_Category" FromRole="Category" ToRole="TopLosttbl" />
-          <NavigationProperty Name="AdminApprovalTbls" Relationship="LOFDbModel1.FK_AdminApprovalTbl_Category" FromRole="Category" ToRole="AdminApprovalTbl" />
         </EntityType>
         <EntityType Name="Foundtbl">
           <Key>
@@ -783,13 +829,14 @@
           <Property Name="SubCategoryId" Type="Int32" />
           <Property Name="LocationId" Type="Int32" />
           <Property Name="SubLocationId" Type="Int32" />
+          <Property Name="OwnerAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UniqueKey" Type="Int32" />
           <NavigationProperty Name="AllProductsTbls" Relationship="Self.FK_AllProductsTbl_Foundtbl" FromRole="Foundtbl" ToRole="AllProductsTbl" />
           <NavigationProperty Name="Category1" Relationship="Self.FK_Foundtbl_Category" FromRole="Foundtbl" ToRole="Category" />
           <NavigationProperty Name="Location1" Relationship="Self.FK_Foundtbl_Location" FromRole="Foundtbl" ToRole="Location" />
           <NavigationProperty Name="SubCategory1" Relationship="Self.FK_Foundtbl_SubCategory" FromRole="Foundtbl" ToRole="SubCategory" />
           <NavigationProperty Name="SubLocation1" Relationship="Self.FK_Foundtbl_SubLocation" FromRole="Foundtbl" ToRole="SubLocation" />
           <NavigationProperty Name="Topfoundtbls" Relationship="Self.FK_Topfoundtbl_Foundtbl" FromRole="Foundtbl" ToRole="Topfoundtbl" />
-          <Property Name="OwnerAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Location">
           <Key>
@@ -797,13 +844,23 @@
           </Key>
           <Property Name="LocationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="LocationName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="AdminApprovalTbls" Relationship="Self.FK_AdminApprovalTbl_Location" FromRole="Location" ToRole="AdminApprovalTbl" />
           <NavigationProperty Name="AllProductsTbls" Relationship="Self.FK_AllProductsTbl_Location" FromRole="Location" ToRole="AllProductsTbl" />
           <NavigationProperty Name="Foundtbls" Relationship="Self.FK_Foundtbl_Location" FromRole="Location" ToRole="Foundtbl" />
           <NavigationProperty Name="Losttbls" Relationship="Self.FK_Losttbl_Location" FromRole="Location" ToRole="Losttbl" />
           <NavigationProperty Name="SubLocations" Relationship="Self.FK_SubLocation_Location" FromRole="Location" ToRole="SubLocation" />
           <NavigationProperty Name="Topfoundtbls" Relationship="Self.FK_Topfoundtbl_Location" FromRole="Location" ToRole="Topfoundtbl" />
           <NavigationProperty Name="TopLosttbls" Relationship="Self.FK_TopLosttbl_Location" FromRole="Location" ToRole="TopLosttbl" />
-          <NavigationProperty Name="AdminApprovalTbls" Relationship="LOFDbModel1.FK_AdminApprovalTbl_Location" FromRole="Location" ToRole="AdminApprovalTbl" />
+        </EntityType>
+        <EntityType Name="LoginTbl">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RegisterId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="RegisterTbl" Relationship="Self.FK_LoginTbl_LoginTbl" FromRole="LoginTbl" ToRole="RegisterTbl" />
         </EntityType>
         <EntityType Name="Losttbl">
           <Key>
@@ -825,13 +882,28 @@
           <Property Name="SubCategoryId" Type="Int32" />
           <Property Name="LocationId" Type="Int32" />
           <Property Name="SubLocationId" Type="Int32" />
+          <Property Name="OwnerAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UniqueKey" Type="Int32" />
           <NavigationProperty Name="AllProductsTbls" Relationship="Self.FK_AllProductsTbl_Losttbl" FromRole="Losttbl" ToRole="AllProductsTbl" />
           <NavigationProperty Name="Category1" Relationship="Self.FK_Losttbl_Category" FromRole="Losttbl" ToRole="Category" />
           <NavigationProperty Name="Location1" Relationship="Self.FK_Losttbl_Location" FromRole="Losttbl" ToRole="Location" />
           <NavigationProperty Name="SubCategory1" Relationship="Self.FK_Losttbl_SubCategory" FromRole="Losttbl" ToRole="SubCategory" />
           <NavigationProperty Name="SubLocation1" Relationship="Self.FK_Losttbl_SubLocation" FromRole="Losttbl" ToRole="SubLocation" />
           <NavigationProperty Name="TopLosttbls" Relationship="Self.FK_TopLosttbl_Losttbl" FromRole="Losttbl" ToRole="TopLosttbl" />
-          <Property Name="OwnerAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="RegisterTbl">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ConfirmPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ContactNo" Type="Int32" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AlternativeContactNo" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="LoginTbls" Relationship="Self.FK_LoginTbl_LoginTbl" FromRole="RegisterTbl" ToRole="LoginTbl" />
         </EntityType>
         <EntityType Name="SubCategory">
           <Key>
@@ -840,13 +912,13 @@
           <Property Name="SubCategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="SubCategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="CategoryId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AdminApprovalTbls" Relationship="Self.FK_AdminApprovalTbl_SubCategory" FromRole="SubCategory" ToRole="AdminApprovalTbl" />
           <NavigationProperty Name="AllProductsTbls" Relationship="Self.FK_AllProductsTbl_SubCategory" FromRole="SubCategory" ToRole="AllProductsTbl" />
           <NavigationProperty Name="Category" Relationship="Self.FK_SubCategory_Category" FromRole="SubCategory" ToRole="Category" />
           <NavigationProperty Name="Foundtbls" Relationship="Self.FK_Foundtbl_SubCategory" FromRole="SubCategory" ToRole="Foundtbl" />
           <NavigationProperty Name="Losttbls" Relationship="Self.FK_Losttbl_SubCategory" FromRole="SubCategory" ToRole="Losttbl" />
           <NavigationProperty Name="Topfoundtbls" Relationship="Self.FK_Topfoundtbl_SubCategory" FromRole="SubCategory" ToRole="Topfoundtbl" />
           <NavigationProperty Name="TopLosttbls" Relationship="Self.FK_TopLosttbl_SubCategory" FromRole="SubCategory" ToRole="TopLosttbl" />
-          <NavigationProperty Name="AdminApprovalTbls" Relationship="LOFDbModel1.FK_AdminApprovalTbl_SubCategory" FromRole="SubCategory" ToRole="AdminApprovalTbl" />
         </EntityType>
         <EntityType Name="SubLocation">
           <Key>
@@ -855,13 +927,13 @@
           <Property Name="SubLocationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="SubLocationName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="LocationId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AdminApprovalTbls" Relationship="Self.FK_AdminApprovalTbl_SubLocation" FromRole="SubLocation" ToRole="AdminApprovalTbl" />
           <NavigationProperty Name="AllProductsTbls" Relationship="Self.FK_AllProductsTbl_SubLocation" FromRole="SubLocation" ToRole="AllProductsTbl" />
           <NavigationProperty Name="Foundtbls" Relationship="Self.FK_Foundtbl_SubLocation" FromRole="SubLocation" ToRole="Foundtbl" />
           <NavigationProperty Name="Location" Relationship="Self.FK_SubLocation_Location" FromRole="SubLocation" ToRole="Location" />
           <NavigationProperty Name="Losttbls" Relationship="Self.FK_Losttbl_SubLocation" FromRole="SubLocation" ToRole="Losttbl" />
           <NavigationProperty Name="Topfoundtbls" Relationship="Self.FK_Topfoundtbl_SubLocation" FromRole="SubLocation" ToRole="Topfoundtbl" />
           <NavigationProperty Name="TopLosttbls" Relationship="Self.FK_TopLosttbl_SubLocation" FromRole="SubLocation" ToRole="TopLosttbl" />
-          <NavigationProperty Name="AdminApprovalTbls" Relationship="LOFDbModel1.FK_AdminApprovalTbl_SubLocation" FromRole="SubLocation" ToRole="AdminApprovalTbl" />
         </EntityType>
         <EntityType Name="Topfoundtbl">
           <Key>
@@ -884,12 +956,13 @@
           <Property Name="SubCategoryId" Type="Int32" />
           <Property Name="LocationId" Type="Int32" />
           <Property Name="SubLocationId" Type="Int32" />
+          <Property Name="OwnerAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UniqueKey" Type="Int32" />
           <NavigationProperty Name="Category1" Relationship="Self.FK_Topfoundtbl_Category" FromRole="Topfoundtbl" ToRole="Category" />
           <NavigationProperty Name="Foundtbl" Relationship="Self.FK_Topfoundtbl_Foundtbl" FromRole="Topfoundtbl" ToRole="Foundtbl" />
           <NavigationProperty Name="Location1" Relationship="Self.FK_Topfoundtbl_Location" FromRole="Topfoundtbl" ToRole="Location" />
           <NavigationProperty Name="SubCategory1" Relationship="Self.FK_Topfoundtbl_SubCategory" FromRole="Topfoundtbl" ToRole="SubCategory" />
           <NavigationProperty Name="SubLocation1" Relationship="Self.FK_Topfoundtbl_SubLocation" FromRole="Topfoundtbl" ToRole="SubLocation" />
-          <Property Name="OwnerAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="TopLosttbl">
           <Key>
@@ -912,13 +985,72 @@
           <Property Name="SubCategoryId" Type="Int32" />
           <Property Name="LocationId" Type="Int32" />
           <Property Name="SubLocationId" Type="Int32" />
+          <Property Name="OwnerAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UniueKey" Type="Int32" />
           <NavigationProperty Name="Category1" Relationship="Self.FK_TopLosttbl_Category" FromRole="TopLosttbl" ToRole="Category" />
           <NavigationProperty Name="Location1" Relationship="Self.FK_TopLosttbl_Location" FromRole="TopLosttbl" ToRole="Location" />
           <NavigationProperty Name="Losttbl" Relationship="Self.FK_TopLosttbl_Losttbl" FromRole="TopLosttbl" ToRole="Losttbl" />
           <NavigationProperty Name="SubCategory1" Relationship="Self.FK_TopLosttbl_SubCategory" FromRole="TopLosttbl" ToRole="SubCategory" />
           <NavigationProperty Name="SubLocation1" Relationship="Self.FK_TopLosttbl_SubLocation" FromRole="TopLosttbl" ToRole="SubLocation" />
-          <Property Name="OwnerAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="AdminLoginTbl">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Username" />
+            <PropertyRef Name="Password" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_AdminApprovalTbl_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="AdminApprovalTbl" Type="Self.AdminApprovalTbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="AdminApprovalTbl">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AdminApprovalTbl_Location">
+          <End Role="Location" Type="Self.Location" Multiplicity="0..1" />
+          <End Role="AdminApprovalTbl" Type="Self.AdminApprovalTbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="LocationId" />
+            </Principal>
+            <Dependent Role="AdminApprovalTbl">
+              <PropertyRef Name="LocationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AdminApprovalTbl_SubCategory">
+          <End Role="SubCategory" Type="Self.SubCategory" Multiplicity="0..1" />
+          <End Role="AdminApprovalTbl" Type="Self.AdminApprovalTbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubCategory">
+              <PropertyRef Name="SubCategoryId" />
+            </Principal>
+            <Dependent Role="AdminApprovalTbl">
+              <PropertyRef Name="SubCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AdminApprovalTbl_SubLocation">
+          <End Role="SubLocation" Type="Self.SubLocation" Multiplicity="0..1" />
+          <End Role="AdminApprovalTbl" Type="Self.AdminApprovalTbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubLocation">
+              <PropertyRef Name="SubLocationId" />
+            </Principal>
+            <Dependent Role="AdminApprovalTbl">
+              <PropertyRef Name="SubLocationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_AllProductsTbl_Category">
           <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
           <End Role="AllProductsTbl" Type="Self.AllProductsTbl" Multiplicity="*" />
@@ -1147,6 +1279,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_LoginTbl_LoginTbl">
+          <End Role="RegisterTbl" Type="Self.RegisterTbl" Multiplicity="1" />
+          <End Role="LoginTbl" Type="Self.LoginTbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RegisterTbl">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LoginTbl">
+              <PropertyRef Name="RegisterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Losttbl_SubCategory">
           <End Role="SubCategory" Type="Self.SubCategory" Multiplicity="0..1" />
           <End Role="Losttbl" Type="Self.Losttbl" Multiplicity="*" />
@@ -1231,16 +1375,36 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="LOFDbEntities5" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="LOFDbEntities6" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AdminApprovalTbls" EntityType="Self.AdminApprovalTbl" />
           <EntitySet Name="AllProductsTbls" EntityType="Self.AllProductsTbl" />
           <EntitySet Name="Categories" EntityType="Self.Category" />
           <EntitySet Name="Foundtbls" EntityType="Self.Foundtbl" />
           <EntitySet Name="Locations" EntityType="Self.Location" />
+          <EntitySet Name="LoginTbls" EntityType="Self.LoginTbl" />
           <EntitySet Name="Losttbls" EntityType="Self.Losttbl" />
+          <EntitySet Name="RegisterTbls" EntityType="Self.RegisterTbl" />
           <EntitySet Name="SubCategories" EntityType="Self.SubCategory" />
           <EntitySet Name="SubLocations" EntityType="Self.SubLocation" />
           <EntitySet Name="Topfoundtbls" EntityType="Self.Topfoundtbl" />
           <EntitySet Name="TopLosttbls" EntityType="Self.TopLosttbl" />
+          <EntitySet Name="AdminLoginTbls" EntityType="Self.AdminLoginTbl" />
+          <AssociationSet Name="FK_AdminApprovalTbl_Category" Association="Self.FK_AdminApprovalTbl_Category">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="AdminApprovalTbl" EntitySet="AdminApprovalTbls" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AdminApprovalTbl_Location" Association="Self.FK_AdminApprovalTbl_Location">
+            <End Role="Location" EntitySet="Locations" />
+            <End Role="AdminApprovalTbl" EntitySet="AdminApprovalTbls" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AdminApprovalTbl_SubCategory" Association="Self.FK_AdminApprovalTbl_SubCategory">
+            <End Role="SubCategory" EntitySet="SubCategories" />
+            <End Role="AdminApprovalTbl" EntitySet="AdminApprovalTbls" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AdminApprovalTbl_SubLocation" Association="Self.FK_AdminApprovalTbl_SubLocation">
+            <End Role="SubLocation" EntitySet="SubLocations" />
+            <End Role="AdminApprovalTbl" EntitySet="AdminApprovalTbls" />
+          </AssociationSet>
           <AssociationSet Name="FK_AllProductsTbl_Category" Association="Self.FK_AllProductsTbl_Category">
             <End Role="Category" EntitySet="Categories" />
             <End Role="AllProductsTbl" EntitySet="AllProductsTbls" />
@@ -1317,6 +1481,10 @@
             <End Role="Location" EntitySet="Locations" />
             <End Role="TopLosttbl" EntitySet="TopLosttbls" />
           </AssociationSet>
+          <AssociationSet Name="FK_LoginTbl_LoginTbl" Association="Self.FK_LoginTbl_LoginTbl">
+            <End Role="RegisterTbl" EntitySet="RegisterTbls" />
+            <End Role="LoginTbl" EntitySet="LoginTbls" />
+          </AssociationSet>
           <AssociationSet Name="FK_Losttbl_SubCategory" Association="Self.FK_Losttbl_SubCategory">
             <End Role="SubCategory" EntitySet="SubCategories" />
             <End Role="Losttbl" EntitySet="Losttbls" />
@@ -1345,160 +1513,41 @@
             <End Role="SubLocation" EntitySet="SubLocations" />
             <End Role="TopLosttbl" EntitySet="TopLosttbls" />
           </AssociationSet>
-          <EntitySet Name="AdminApprovalTbls" EntityType="LOFDbModel1.AdminApprovalTbl" />
-          <AssociationSet Name="FK_AdminApprovalTbl_Category" Association="LOFDbModel1.FK_AdminApprovalTbl_Category">
-            <End Role="Category" EntitySet="Categories" />
-            <End Role="AdminApprovalTbl" EntitySet="AdminApprovalTbls" />
-          </AssociationSet>
-          <AssociationSet Name="FK_AdminApprovalTbl_Location" Association="LOFDbModel1.FK_AdminApprovalTbl_Location">
-            <End Role="Location" EntitySet="Locations" />
-            <End Role="AdminApprovalTbl" EntitySet="AdminApprovalTbls" />
-          </AssociationSet>
-          <AssociationSet Name="FK_AdminApprovalTbl_SubCategory" Association="LOFDbModel1.FK_AdminApprovalTbl_SubCategory">
-            <End Role="SubCategory" EntitySet="SubCategories" />
-            <End Role="AdminApprovalTbl" EntitySet="AdminApprovalTbls" />
-          </AssociationSet>
-          <AssociationSet Name="FK_AdminApprovalTbl_SubLocation" Association="LOFDbModel1.FK_AdminApprovalTbl_SubLocation">
-            <End Role="SubLocation" EntitySet="SubLocations" />
-            <End Role="AdminApprovalTbl" EntitySet="AdminApprovalTbls" />
-          </AssociationSet>
-          <EntitySet Name="AdminLoginTbls" EntityType="LOFDbModel1.AdminLoginTbl" />
-          <EntitySet Name="LoginTbls" EntityType="LOFDbModel1.LoginTbl" />
-          <EntitySet Name="RegisterTbls" EntityType="LOFDbModel1.RegisterTbl" />
-          <AssociationSet Name="FK_LoginTbl_LoginTbl" Association="LOFDbModel1.FK_LoginTbl_LoginTbl">
-            <End Role="RegisterTbl" EntitySet="RegisterTbls" />
-            <End Role="LoginTbl" EntitySet="LoginTbls" />
-          </AssociationSet>
         </EntityContainer>
-        <EntityType Name="AdminApprovalTbl">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Image" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Type" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Category" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="SubCategory" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Location" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="SubLocation" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="DateOfFound" Type="DateTime" Precision="3" />
-          <Property Name="DateOfLost" Type="DateTime" Precision="3" />
-          <Property Name="Details" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="OwnerName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="CellNo" Type="Int32" Nullable="false" />
-          <Property Name="CategoryId" Type="Int32" />
-          <Property Name="SubCategoryId" Type="Int32" />
-          <Property Name="LocationId" Type="Int32" />
-          <Property Name="SubLocationId" Type="Int32" />
-          <NavigationProperty Name="Category1" Relationship="LOFDbModel1.FK_AdminApprovalTbl_Category" FromRole="AdminApprovalTbl" ToRole="Category" />
-          <NavigationProperty Name="Location1" Relationship="LOFDbModel1.FK_AdminApprovalTbl_Location" FromRole="AdminApprovalTbl" ToRole="Location" />
-          <NavigationProperty Name="SubCategory1" Relationship="LOFDbModel1.FK_AdminApprovalTbl_SubCategory" FromRole="AdminApprovalTbl" ToRole="SubCategory" />
-          <NavigationProperty Name="SubLocation1" Relationship="LOFDbModel1.FK_AdminApprovalTbl_SubLocation" FromRole="AdminApprovalTbl" ToRole="SubLocation" />
-          <Property Name="OwnerAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <Association Name="FK_AdminApprovalTbl_Category">
-          <End Type="LOFDbModel1.Category" Role="Category" Multiplicity="0..1" />
-          <End Type="LOFDbModel1.AdminApprovalTbl" Role="AdminApprovalTbl" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Category">
-              <PropertyRef Name="CategoryId" />
-            </Principal>
-            <Dependent Role="AdminApprovalTbl">
-              <PropertyRef Name="CategoryId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_AdminApprovalTbl_Location">
-          <End Type="LOFDbModel1.Location" Role="Location" Multiplicity="0..1" />
-          <End Type="LOFDbModel1.AdminApprovalTbl" Role="AdminApprovalTbl" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Location">
-              <PropertyRef Name="LocationId" />
-            </Principal>
-            <Dependent Role="AdminApprovalTbl">
-              <PropertyRef Name="LocationId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_AdminApprovalTbl_SubCategory">
-          <End Type="LOFDbModel1.SubCategory" Role="SubCategory" Multiplicity="0..1" />
-          <End Type="LOFDbModel1.AdminApprovalTbl" Role="AdminApprovalTbl" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SubCategory">
-              <PropertyRef Name="SubCategoryId" />
-            </Principal>
-            <Dependent Role="AdminApprovalTbl">
-              <PropertyRef Name="SubCategoryId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_AdminApprovalTbl_SubLocation">
-          <End Type="LOFDbModel1.SubLocation" Role="SubLocation" Multiplicity="0..1" />
-          <End Type="LOFDbModel1.AdminApprovalTbl" Role="AdminApprovalTbl" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SubLocation">
-              <PropertyRef Name="SubLocationId" />
-            </Principal>
-            <Dependent Role="AdminApprovalTbl">
-              <PropertyRef Name="SubLocationId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="AdminLoginTbl">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="LoginTbl">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="RegisterId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="RegisterTbl" Relationship="LOFDbModel1.FK_LoginTbl_LoginTbl" FromRole="LoginTbl" ToRole="RegisterTbl" />
-        </EntityType>
-        <EntityType Name="RegisterTbl">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="ConfirmPassword" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="ContactNo" Type="Int32" Nullable="false" />
-          <Property Name="Address" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="AlternativeContactNo" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="LoginTbls" Relationship="LOFDbModel1.FK_LoginTbl_LoginTbl" FromRole="RegisterTbl" ToRole="LoginTbl" />
-        </EntityType>
-        <Association Name="FK_LoginTbl_LoginTbl">
-          <End Type="LOFDbModel1.RegisterTbl" Role="RegisterTbl" Multiplicity="1" />
-          <End Type="LOFDbModel1.LoginTbl" Role="LoginTbl" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="RegisterTbl">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="LoginTbl">
-              <PropertyRef Name="RegisterId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="LOFDbModel1StoreContainer" CdmEntityContainer="LOFDbEntities5">
-          <EntitySetMapping Name="AllProductsTbls">
-            <EntityTypeMapping TypeName="LOFDbModel1.AllProductsTbl">
-              <MappingFragment StoreEntitySet="AllProductsTbl">
+        <EntityContainerMapping StorageEntityContainer="LOFDbModelStoreContainer" CdmEntityContainer="LOFDbEntities6">
+          <EntitySetMapping Name="AdminApprovalTbls">
+            <EntityTypeMapping TypeName="LOFDbModel.AdminApprovalTbl">
+              <MappingFragment StoreEntitySet="AdminApprovalTbl">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="SubCategory" ColumnName="SubCategory" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="SubLocation" ColumnName="SubLocation" />
+                <ScalarProperty Name="DateOfFound" ColumnName="DateOfFound" />
+                <ScalarProperty Name="DateOfLost" ColumnName="DateOfLost" />
+                <ScalarProperty Name="Details" ColumnName="Details" />
+                <ScalarProperty Name="OwnerName" ColumnName="OwnerName" />
+                <ScalarProperty Name="CellNo" ColumnName="CellNo" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="SubCategoryId" ColumnName="SubCategoryId" />
+                <ScalarProperty Name="LocationId" ColumnName="LocationId" />
+                <ScalarProperty Name="SubLocationId" ColumnName="SubLocationId" />
                 <ScalarProperty Name="OwnerAddress" ColumnName="OwnerAddress" />
+                <ScalarProperty Name="UniqueKey" ColumnName="UniqueKey" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AllProductsTbls">
+            <EntityTypeMapping TypeName="LOFDbModel.AllProductsTbl">
+              <MappingFragment StoreEntitySet="AllProductsTbl">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="Image" ColumnName="Image" />
@@ -1518,11 +1567,13 @@
                 <ScalarProperty Name="SubCategoryId" ColumnName="SubCategoryId" />
                 <ScalarProperty Name="LocationId" ColumnName="LocationId" />
                 <ScalarProperty Name="SubLocationId" ColumnName="SubLocationId" />
+                <ScalarProperty Name="OwnerAddress" ColumnName="OwnerAddress" />
+                <ScalarProperty Name="UniqueKey" ColumnName="UniqueKey" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Categories">
-            <EntityTypeMapping TypeName="LOFDbModel1.Category">
+            <EntityTypeMapping TypeName="LOFDbModel.Category">
               <MappingFragment StoreEntitySet="Category">
                 <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
                 <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
@@ -1530,9 +1581,8 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Foundtbls">
-            <EntityTypeMapping TypeName="LOFDbModel1.Foundtbl">
+            <EntityTypeMapping TypeName="LOFDbModel.Foundtbl">
               <MappingFragment StoreEntitySet="Foundtbl">
-                <ScalarProperty Name="OwnerAddress" ColumnName="OwnerAddress" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="Image" ColumnName="Image" />
@@ -1549,21 +1599,32 @@
                 <ScalarProperty Name="SubCategoryId" ColumnName="SubCategoryId" />
                 <ScalarProperty Name="LocationId" ColumnName="LocationId" />
                 <ScalarProperty Name="SubLocationId" ColumnName="SubLocationId" />
+                <ScalarProperty Name="OwnerAddress" ColumnName="OwnerAddress" />
+                <ScalarProperty Name="UniqueKey" ColumnName="UniqueKey" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Locations">
-            <EntityTypeMapping TypeName="LOFDbModel1.Location">
+            <EntityTypeMapping TypeName="LOFDbModel.Location">
               <MappingFragment StoreEntitySet="Location">
                 <ScalarProperty Name="LocationId" ColumnName="LocationId" />
                 <ScalarProperty Name="LocationName" ColumnName="LocationName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="LoginTbls">
+            <EntityTypeMapping TypeName="LOFDbModel.LoginTbl">
+              <MappingFragment StoreEntitySet="LoginTbl">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="RegisterId" ColumnName="RegisterId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Losttbls">
-            <EntityTypeMapping TypeName="LOFDbModel1.Losttbl">
+            <EntityTypeMapping TypeName="LOFDbModel.Losttbl">
               <MappingFragment StoreEntitySet="Losttbl">
-                <ScalarProperty Name="OwnerAddress" ColumnName="OwnerAddress" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="Image" ColumnName="Image" />
@@ -1580,11 +1641,27 @@
                 <ScalarProperty Name="SubCategoryId" ColumnName="SubCategoryId" />
                 <ScalarProperty Name="LocationId" ColumnName="LocationId" />
                 <ScalarProperty Name="SubLocationId" ColumnName="SubLocationId" />
+                <ScalarProperty Name="OwnerAddress" ColumnName="OwnerAddress" />
+                <ScalarProperty Name="UniqueKey" ColumnName="UniqueKey" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RegisterTbls">
+            <EntityTypeMapping TypeName="LOFDbModel.RegisterTbl">
+              <MappingFragment StoreEntitySet="RegisterTbl">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="ConfirmPassword" ColumnName="ConfirmPassword" />
+                <ScalarProperty Name="ContactNo" ColumnName="ContactNo" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="AlternativeContactNo" ColumnName="AlternativeContactNo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="SubCategories">
-            <EntityTypeMapping TypeName="LOFDbModel1.SubCategory">
+            <EntityTypeMapping TypeName="LOFDbModel.SubCategory">
               <MappingFragment StoreEntitySet="SubCategory">
                 <ScalarProperty Name="SubCategoryId" ColumnName="SubCategoryId" />
                 <ScalarProperty Name="SubCategoryName" ColumnName="SubCategoryName" />
@@ -1593,7 +1670,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="SubLocations">
-            <EntityTypeMapping TypeName="LOFDbModel1.SubLocation">
+            <EntityTypeMapping TypeName="LOFDbModel.SubLocation">
               <MappingFragment StoreEntitySet="SubLocation">
                 <ScalarProperty Name="SubLocationId" ColumnName="SubLocationId" />
                 <ScalarProperty Name="SubLocationName" ColumnName="SubLocationName" />
@@ -1602,9 +1679,8 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Topfoundtbls">
-            <EntityTypeMapping TypeName="LOFDbModel1.Topfoundtbl">
+            <EntityTypeMapping TypeName="LOFDbModel.Topfoundtbl">
               <MappingFragment StoreEntitySet="Topfoundtbl">
-                <ScalarProperty Name="OwnerAddress" ColumnName="OwnerAddress" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="Image" ColumnName="Image" />
@@ -1622,13 +1698,14 @@
                 <ScalarProperty Name="SubCategoryId" ColumnName="SubCategoryId" />
                 <ScalarProperty Name="LocationId" ColumnName="LocationId" />
                 <ScalarProperty Name="SubLocationId" ColumnName="SubLocationId" />
+                <ScalarProperty Name="OwnerAddress" ColumnName="OwnerAddress" />
+                <ScalarProperty Name="UniqueKey" ColumnName="UniqueKey" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TopLosttbls">
-            <EntityTypeMapping TypeName="LOFDbModel1.TopLosttbl">
+            <EntityTypeMapping TypeName="LOFDbModel.TopLosttbl">
               <MappingFragment StoreEntitySet="TopLosttbl">
-                <ScalarProperty Name="OwnerAddress" ColumnName="OwnerAddress" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="Image" ColumnName="Image" />
@@ -1646,63 +1723,17 @@
                 <ScalarProperty Name="SubCategoryId" ColumnName="SubCategoryId" />
                 <ScalarProperty Name="LocationId" ColumnName="LocationId" />
                 <ScalarProperty Name="SubLocationId" ColumnName="SubLocationId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="AdminApprovalTbls">
-            <EntityTypeMapping TypeName="LOFDbModel1.AdminApprovalTbl">
-              <MappingFragment StoreEntitySet="AdminApprovalTbl">
                 <ScalarProperty Name="OwnerAddress" ColumnName="OwnerAddress" />
-                <ScalarProperty Name="SubLocationId" ColumnName="SubLocationId" />
-                <ScalarProperty Name="LocationId" ColumnName="LocationId" />
-                <ScalarProperty Name="SubCategoryId" ColumnName="SubCategoryId" />
-                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
-                <ScalarProperty Name="CellNo" ColumnName="CellNo" />
-                <ScalarProperty Name="OwnerName" ColumnName="OwnerName" />
-                <ScalarProperty Name="Details" ColumnName="Details" />
-                <ScalarProperty Name="DateOfLost" ColumnName="DateOfLost" />
-                <ScalarProperty Name="DateOfFound" ColumnName="DateOfFound" />
-                <ScalarProperty Name="SubLocation" ColumnName="SubLocation" />
-                <ScalarProperty Name="Location" ColumnName="Location" />
-                <ScalarProperty Name="SubCategory" ColumnName="SubCategory" />
-                <ScalarProperty Name="Category" ColumnName="Category" />
-                <ScalarProperty Name="Type" ColumnName="Type" />
-                <ScalarProperty Name="Image" ColumnName="Image" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UniueKey" ColumnName="UniueKey" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AdminLoginTbls">
-            <EntityTypeMapping TypeName="LOFDbModel1.AdminLoginTbl">
+            <EntityTypeMapping TypeName="LOFDbModel.AdminLoginTbl">
               <MappingFragment StoreEntitySet="AdminLoginTbl">
-                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Username" ColumnName="Username" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="LoginTbls">
-            <EntityTypeMapping TypeName="LOFDbModel1.LoginTbl">
-              <MappingFragment StoreEntitySet="LoginTbl">
-                <ScalarProperty Name="RegisterId" ColumnName="RegisterId" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="RegisterTbls">
-            <EntityTypeMapping TypeName="LOFDbModel1.RegisterTbl">
-              <MappingFragment StoreEntitySet="RegisterTbl">
-                <ScalarProperty Name="AlternativeContactNo" ColumnName="AlternativeContactNo" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="ContactNo" ColumnName="ContactNo" />
-                <ScalarProperty Name="ConfirmPassword" ColumnName="ConfirmPassword" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

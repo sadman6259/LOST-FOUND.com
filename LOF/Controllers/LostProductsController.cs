@@ -16,7 +16,7 @@ namespace LOF.Controllers
 
     public class LostProductsController : Controller
     {
-        private LOFDbEntities5 db = new LOFDbEntities5();
+        private LOFDbEntities6 db = new LOFDbEntities6();
 
         // GET: LostProducts
         public ActionResult Index(string searchString,string subcategorysrch,string divisionsrch, string locationsrch, string movieC, string sortOrder, string currentFilter, int? page)
@@ -106,7 +106,57 @@ namespace LOF.Controllers
             {
                 return HttpNotFound();
             }
+            if (losttbl.UniqueKey != null)
+            {
+                TempData["Uniquekey"] = db.Losttbls
+                 .Where(x => x.Id == id)
+                .Select(x => x.UniqueKey)
+                 .FirstOrDefault();
+            }
             return View(losttbl);
+        }
+        public ActionResult Matchedproducts(string sortOrder, string title, int? Id)
+        {
+            if (TempData["Uniquekey"] == null)
+            {
+                return RedirectToAction("NotFound");
+            }
+
+
+            int uniquekey = (int)TempData["Uniquekey"];
+
+
+            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+
+            /*     var movies = from m in db.AllProductsTbls
+                              where  ((m.SubCategory1.SubCategoryName.Contains(SubCategory))&&(m.Title.Contains(Title)||m.Location1.LocationName.Contains(Location) || m.SubLocation1.SubLocationName.Contains(SubLocation)|| m.Details.Contains(Details)))
+                              select m;
+                              */
+
+
+            var movies = from m in db.Foundtbls
+                         where (m.UniqueKey == uniquekey)
+                         select m;
+
+
+            switch (sortOrder)
+            {
+
+                case "Date":
+                    movies = movies.OrderBy(s => s.DateOfFound);
+                    break;
+                case "date_desc":
+                    movies = movies.OrderByDescending(s => s.DateOfFound);
+                    break;
+                default:
+                    movies = movies.OrderByDescending(s => s.DateOfFound);
+                    break;
+            }
+            return View(movies.ToList());
+        }
+        public ActionResult NotFound()
+        {
+            return View();
         }
         [Authorize]
 

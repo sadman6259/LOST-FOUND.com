@@ -263,6 +263,9 @@
                 <h3 style="margin-top:0px;">
                     @Html.DisplayFor(model => model.OwnerAddress)
                 </h3>
+                <div>
+                    @Html.ActionLink("Matched Products", "Matchedproducts", "Template", new { @class = "btn btn-primary", @id = "matched" }) <span class="pull-right"></span>
+                </div>
             </div>
             <div class="col-xs-9">
                 <ul class="menu-items">

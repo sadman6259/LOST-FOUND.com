@@ -12,7 +12,7 @@ namespace LOF.Controllers
 {
     public class RegisterController : Controller
     {
-        private LOFDbEntities5 db = new LOFDbEntities5();
+        private LOFDbEntities6 db = new LOFDbEntities6();
 
         // GET: Register
         public ActionResult Index()

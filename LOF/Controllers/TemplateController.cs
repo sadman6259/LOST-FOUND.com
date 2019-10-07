@@ -19,7 +19,7 @@ namespace LOF.Controllers
 {
     public class TemplateController : Controller
     {
-        LOFDbEntities5 obj = new LOFDbEntities5();
+        LOFDbEntities6 obj = new LOFDbEntities6();
         public ActionResult CommonIndex(string subcategorysrch,string locationsrch)
         {
             var commonmodel = new CommonIndex();
@@ -235,6 +235,13 @@ namespace LOF.Controllers
             {
                 return HttpNotFound();
             }
+            if (foundtbl.UniqueKey != null)
+            {
+                TempData["Uniquekey"] = obj.Topfoundtbls
+                 .Where(x => x.Id == id)
+                .Select(x => x.UniqueKey)
+                 .FirstOrDefault();
+            }
             return View(foundtbl);
         }
         public ActionResult DetailsToplost(int? id)
@@ -248,7 +255,96 @@ namespace LOF.Controllers
             {
                 return HttpNotFound();
             }
+            if (foundtbl.UniueKey != null)
+            {
+                TempData["Uniuekey"] = obj.TopLosttbls
+                 .Where(x => x.Id == id)
+                .Select(x => x.UniueKey)
+                 .FirstOrDefault();
+            }
             return View(foundtbl);
+        }
+        public ActionResult Matchedproducts(string sortOrder, string title, int? Id)
+        {
+            if (TempData["Uniquekey"] == null)
+            {
+                return RedirectToAction("NotFound");
+            }
+
+
+            int uniquekey = (int)TempData["Uniquekey"];
+
+
+            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+
+            /*     var movies = from m in db.AllProductsTbls
+                              where  ((m.SubCategory1.SubCategoryName.Contains(SubCategory))&&(m.Title.Contains(Title)||m.Location1.LocationName.Contains(Location) || m.SubLocation1.SubLocationName.Contains(SubLocation)|| m.Details.Contains(Details)))
+                              select m;
+                              */
+
+
+            var movies = from m in obj.Losttbls
+                         where (m.UniqueKey == uniquekey)
+                         select m;
+
+
+            switch (sortOrder)
+            {
+
+                case "Date":
+                    movies = movies.OrderBy(s => s.DateOfLost);
+                    break;
+                case "date_desc":
+                    movies = movies.OrderByDescending(s => s.DateOfLost);
+                    break;
+                default:
+                    movies = movies.OrderByDescending(s => s.DateOfLost);
+                    break;
+            }
+            return View(movies.ToList());
+        }
+        public ActionResult MatchedproductsToplost(string sortOrder, string title, int? Id)
+        {
+            if (TempData["Uniuekey"] == null)
+            {
+                return RedirectToAction("NotFound");
+            }
+
+
+            int uniuekey = (int)TempData["Uniuekey"];
+
+
+            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+
+            /*     var movies = from m in db.AllProductsTbls
+                              where  ((m.SubCategory1.SubCategoryName.Contains(SubCategory))&&(m.Title.Contains(Title)||m.Location1.LocationName.Contains(Location) || m.SubLocation1.SubLocationName.Contains(SubLocation)|| m.Details.Contains(Details)))
+                              select m;
+                              */
+
+
+            var movies = from m in obj.Foundtbls
+                         where (m.UniqueKey == uniuekey)
+                         select m;
+
+
+            switch (sortOrder)
+            {
+
+                case "Date":
+                    movies = movies.OrderBy(s => s.DateOfFound);
+                    break;
+                case "date_desc":
+                    movies = movies.OrderByDescending(s => s.DateOfFound);
+                    break;
+                default:
+                    movies = movies.OrderByDescending(s => s.DateOfFound);
+                    break;
+            }
+            return View(movies.ToList());
+        }
+        public ActionResult NotFound()
+        {
+            return View();
         }
         [Authorize]
 

@@ -11,11 +11,14 @@ namespace LOF
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Web;
+
     public partial class TopLosttbl
     {
         public int Id { get; set; }
         public string Title { get; set; }
+        public HttpPostedFileBase ImageFile { get; set; }
+
         public string Image { get; set; }
         public string Category { get; set; }
         public string Location { get; set; }
@@ -32,6 +35,7 @@ namespace LOF
         public Nullable<int> LocationId { get; set; }
         public Nullable<int> SubLocationId { get; set; }
         public string OwnerAddress { get; set; }
+        public Nullable<int> UniueKey { get; set; }
     
         public virtual Category Category1 { get; set; }
         public virtual Location Location1 { get; set; }

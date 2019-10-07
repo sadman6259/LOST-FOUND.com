@@ -141,23 +141,23 @@
 
                             @*   <div class="form-group">
 
-                                    @Html.LabelFor(model => model.Category, new { @class = "control-label col-md-2" })
-                                    <div class="col-md-10">
-                                        <div class="col-md-10">
+            @Html.LabelFor(model => model.Category, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="col-md-10">
 
 
-                                            @Html.DropDownListFor(model => model.Category,new List<SelectListItem>
-                                           { new SelectListItem{Text="Electronics", Value="Electronics"},
-                                             new SelectListItem{Text="Pet", Value="Pet"},
-                                              new SelectListItem{Text="Human", Value="Human"},
-                                               new SelectListItem{Text="Others", Value="Others"},
-                                                                  new SelectListItem{Text="Document", Value="Document"}
+                    @Html.DropDownListFor(model => model.Category,new List<SelectListItem>
+                   { new SelectListItem{Text="Electronics", Value="Electronics"},
+                     new SelectListItem{Text="Pet", Value="Pet"},
+                      new SelectListItem{Text="Human", Value="Human"},
+                       new SelectListItem{Text="Others", Value="Others"},
+                                          new SelectListItem{Text="Document", Value="Document"}
 
-                                           }, "Please select", new { @class = "form-control input-lg" })
-                                        </div>
-                                    </div>
+                   }, "Please select", new { @class = "form-control input-lg" })
+                </div>
+            </div>
 
-                                </div>
+        </div>
                             *@
                             <div class="row row-space">
 
@@ -165,7 +165,7 @@
                                     <div class="input-group">
                                         <label class="label">Category</label>
 
-                                        @Html.DropDownListFor(model => model.Category, ViewBag.category as List<SelectListItem>, new { style = "width: 200px;", @class = "form-control input-lg" })
+                                        @Html.DropDownListFor(model => model.Category, ViewBag.category as List<SelectListItem>, new { style = "width: 200px;", @class = "form-control input-lg", @onchange = "javascript: test()", @id = "Category" })
 
                                         @Html.ValidationMessageFor(model => model.Category, "", new { @class = "text-danger" })
                                     </div>
@@ -181,7 +181,17 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="row">
+                                <div id="hideOnLoad" style="display:none;" class="input-group">
 
+                                    <label class="label">Unique Key</label>
+                                    <div class="col-md-12">
+
+                                        @Html.TextBoxFor(model => model.UniqueKey, new { @class = "form-control input-lg", required = "required" })
+                                        @Html.ValidationMessageFor(model => model.UniqueKey)
+                                    </div>
+                                </div>
+                            </div>
                             <div class="row">
 
                                 <div class="input-group">
@@ -204,6 +214,11 @@
         $(document).ready(function () {
 
             $("#Category").change(function () {
+                if ($(this).val() == 1002 || $(this).val() == 1004) {
+                    $('#hideOnLoad').show();
+                } else {
+                    $('#hideOnLoad').hide();
+                }
                 $("#SubCategory").empty();
                 $.ajax({
                     type: 'POST',
@@ -254,30 +269,30 @@
         });
                             </script>
                             @*  <div class="form-group">
-                                    @Html.LabelFor(model => model.SubCategory, new { @class = "control-label col-md-2" })
-                                    <div class="col-md-10">
-                                        <div class="col-md-10">
+            @Html.LabelFor(model => model.SubCategory, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="col-md-10">
 
 
-                                            @Html.DropDownListFor(model => model.SubCategory,new List<SelectListItem>
-                                           { new SelectListItem{Text="Cameras", Value="Cameras"},
-                                             new SelectListItem{Text="Computers,Tablets & Laptop", Value="Computers,Tablets & Laptop"},
-                                              new SelectListItem{Text="Mobile Phone", Value="Mobile Phone"},
-                                               new SelectListItem{Text="Sound & Vision", Value="Sound & Vision"},
-                                                                  new SelectListItem{Text="Cat", Value="Cat"},
-                                                     new SelectListItem{Text="Dog", Value="Dog"},
-                                                                  new SelectListItem{Text="Rabbit", Value="Rabbit"},
-                                                                  new SelectListItem{Text="Certificate", Value="Certificate"},
-                                                                  new SelectListItem{Text="Passport", Value="Passport"},
-                                                                  new SelectListItem{Text="Driving License", Value="Driving License"},
-                                                                  new SelectListItem{Text="Music Instruments", Value="Music Instruments"},
-                                                                  new SelectListItem{Text="Sports Equipments", Value="Sports Equipments"},
-                                                                  new SelectListItem{Text="Jwelary", Value="Jwelary"}
+                    @Html.DropDownListFor(model => model.SubCategory,new List<SelectListItem>
+                   { new SelectListItem{Text="Cameras", Value="Cameras"},
+                     new SelectListItem{Text="Computers,Tablets & Laptop", Value="Computers,Tablets & Laptop"},
+                      new SelectListItem{Text="Mobile Phone", Value="Mobile Phone"},
+                       new SelectListItem{Text="Sound & Vision", Value="Sound & Vision"},
+                                          new SelectListItem{Text="Cat", Value="Cat"},
+                             new SelectListItem{Text="Dog", Value="Dog"},
+                                          new SelectListItem{Text="Rabbit", Value="Rabbit"},
+                                          new SelectListItem{Text="Certificate", Value="Certificate"},
+                                          new SelectListItem{Text="Passport", Value="Passport"},
+                                          new SelectListItem{Text="Driving License", Value="Driving License"},
+                                          new SelectListItem{Text="Music Instruments", Value="Music Instruments"},
+                                          new SelectListItem{Text="Sports Equipments", Value="Sports Equipments"},
+                                          new SelectListItem{Text="Jwelary", Value="Jwelary"}
 
-                                }, "Please select", new { @class = "form-control input-lg" })
-                                        </div>
-                                    </div>
-                                </div>
+        }, "Please select", new { @class = "form-control input-lg" })
+                </div>
+            </div>
+        </div>
 
                             *@
 

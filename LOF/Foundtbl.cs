@@ -41,6 +41,7 @@ namespace LOF
         public Nullable<int> LocationId { get; set; }
         public Nullable<int> SubLocationId { get; set; }
         public string OwnerAddress { get; set; }
+        public Nullable<int> UniqueKey { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AllProductsTbl> AllProductsTbls { get; set; }

@@ -13,10 +13,10 @@ namespace LOF
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class LOFDbEntities5 : DbContext
+    public partial class LOFDbEntities6 : DbContext
     {
-        public LOFDbEntities5()
-            : base("name=LOFDbEntities5")
+        public LOFDbEntities6()
+            : base("name=LOFDbEntities6")
         {
         }
     
@@ -25,18 +25,18 @@ namespace LOF
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<AdminApprovalTbl> AdminApprovalTbls { get; set; }
         public virtual DbSet<AllProductsTbl> AllProductsTbls { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Foundtbl> Foundtbls { get; set; }
         public virtual DbSet<Location> Locations { get; set; }
+        public virtual DbSet<LoginTbl> LoginTbls { get; set; }
         public virtual DbSet<Losttbl> Losttbls { get; set; }
+        public virtual DbSet<RegisterTbl> RegisterTbls { get; set; }
         public virtual DbSet<SubCategory> SubCategories { get; set; }
         public virtual DbSet<SubLocation> SubLocations { get; set; }
         public virtual DbSet<Topfoundtbl> Topfoundtbls { get; set; }
         public virtual DbSet<TopLosttbl> TopLosttbls { get; set; }
-        public virtual DbSet<AdminApprovalTbl> AdminApprovalTbls { get; set; }
         public virtual DbSet<AdminLoginTbl> AdminLoginTbls { get; set; }
-        public virtual DbSet<LoginTbl> LoginTbls { get; set; }
-        public virtual DbSet<RegisterTbl> RegisterTbls { get; set; }
     }
 }

@@ -10,7 +10,7 @@ namespace LOF.Controllers
 {
     public class HomeController : Controller
     {
-        private LOFDbEntities5 db = new LOFDbEntities5();
+        private LOFDbEntities6 db = new LOFDbEntities6();
 
         public ActionResult Index()
         {

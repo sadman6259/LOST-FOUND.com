@@ -11,7 +11,8 @@ namespace LOF
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Web;
+
     public partial class Losttbl
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -23,6 +24,8 @@ namespace LOF
     
         public int Id { get; set; }
         public string Title { get; set; }
+        public HttpPostedFileBase ImageFile { get; set; }
+
         public string Image { get; set; }
         public string Category { get; set; }
         public string Location { get; set; }
@@ -38,6 +41,7 @@ namespace LOF
         public Nullable<int> LocationId { get; set; }
         public Nullable<int> SubLocationId { get; set; }
         public string OwnerAddress { get; set; }
+        public Nullable<int> UniqueKey { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AllProductsTbl> AllProductsTbls { get; set; }
