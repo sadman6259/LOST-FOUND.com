@@ -110,6 +110,26 @@ namespace LOF.Controllers
             {
                 return HttpNotFound();
             }
+            TempData["Title"] = db.Foundtbls
+                .Where(x => x.Id == id)
+                .Select(x => x.Title)
+                .FirstOrDefault();
+            TempData["Location"] = db.Foundtbls
+                 .Where(x => x.Id == id)
+                 .Select(x => x.Location1.LocationName)
+                 .FirstOrDefault();
+            TempData["SubLocation"] = db.Foundtbls
+              .Where(x => x.Id == id)
+              .Select(x => x.SubLocation1.SubLocationName)
+              .FirstOrDefault();
+            TempData["Details"] = db.Foundtbls
+             .Where(x => x.Id == id)
+             .Select(x => x.Details)
+             .FirstOrDefault();
+            TempData["SubCategory"] = db.Foundtbls
+                .Where(x => x.Id == id)
+               .Select(x => x.SubCategory1.SubCategoryName)
+                .FirstOrDefault();
             if (foundtbl.UniqueKey != null)
             {
                 TempData["Uniquekey"] = db.Foundtbls
@@ -122,11 +142,27 @@ namespace LOF.Controllers
         }
         public ActionResult Matchedproducts(string sortOrder, string title, int? Id)
         {
+            string Title = TempData["Title"].ToString();
+            string Location = TempData["Location"].ToString();
+            string SubLocation = TempData["SubLocation"].ToString();
+            string Details = TempData["Details"].ToString();
+            string SubCategory = TempData["SubCategory"].ToString();
+
             if (TempData["Uniquekey"] == null)
             {
-                return RedirectToAction("NotFound");
+                var products = from m in db.Losttbls
+                               where ((m.SubCategory1.SubCategoryName.Contains(SubCategory)) && (m.Title.Contains(Title) || m.Location1.LocationName.Contains(Location) || m.SubLocation1.SubLocationName.Contains(SubLocation) || m.Details.Contains(Details)))
+                               select m;
+                if (products == null)
+                {
+                    return RedirectToAction("NotFound");
+                }
+                else
+                {
+                    return View(products.ToList());
+                }
+                //   return RedirectToAction("NotFound");
             }
-        
 
             int uniquekey = (int)TempData["Uniquekey"];
 
@@ -143,7 +179,10 @@ namespace LOF.Controllers
                          where (m.UniqueKey == uniquekey)
                          select m;
 
-
+            if (movies == null)
+            {
+                return RedirectToAction("NotFound");
+            }
             switch (sortOrder)
             {
 

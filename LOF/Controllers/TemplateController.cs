@@ -235,6 +235,26 @@ namespace LOF.Controllers
             {
                 return HttpNotFound();
             }
+            TempData["Title"] = obj.Topfoundtbls
+              .Where(x => x.Id == id)
+              .Select(x => x.Title)
+              .FirstOrDefault();
+            TempData["Location"] = obj.Topfoundtbls
+                 .Where(x => x.Id == id)
+                 .Select(x => x.Location1.LocationName)
+                 .FirstOrDefault();
+            TempData["SubLocation"] = obj.Topfoundtbls
+              .Where(x => x.Id == id)
+              .Select(x => x.SubLocation1.SubLocationName)
+              .FirstOrDefault();
+            TempData["Details"] = obj.Topfoundtbls
+             .Where(x => x.Id == id)
+             .Select(x => x.Details)
+             .FirstOrDefault();
+            TempData["SubCategory"] = obj.Topfoundtbls
+                .Where(x => x.Id == id)
+               .Select(x => x.SubCategory1.SubCategoryName)
+                .FirstOrDefault();
             if (foundtbl.UniqueKey != null)
             {
                 TempData["Uniquekey"] = obj.Topfoundtbls
@@ -255,6 +275,26 @@ namespace LOF.Controllers
             {
                 return HttpNotFound();
             }
+            TempData["Titletl"] = obj.TopLosttbls
+             .Where(x => x.Id == id)
+             .Select(x => x.Title)
+             .FirstOrDefault();
+            TempData["Locationtl"] = obj.TopLosttbls
+                 .Where(x => x.Id == id)
+                 .Select(x => x.Location1.LocationName)
+                 .FirstOrDefault();
+            TempData["SubLocationtl"] = obj.TopLosttbls
+              .Where(x => x.Id == id)
+              .Select(x => x.SubLocation1.SubLocationName)
+              .FirstOrDefault();
+            TempData["Detailstl"] = obj.TopLosttbls
+             .Where(x => x.Id == id)
+             .Select(x => x.Details)
+             .FirstOrDefault();
+            TempData["SubCategorytl"] = obj.TopLosttbls
+                .Where(x => x.Id == id)
+               .Select(x => x.SubCategory1.SubCategoryName)
+                .FirstOrDefault();
             if (foundtbl.UniueKey != null)
             {
                 TempData["Uniuekey"] = obj.TopLosttbls
@@ -266,9 +306,21 @@ namespace LOF.Controllers
         }
         public ActionResult Matchedproducts(string sortOrder, string title, int? Id)
         {
+            string Title = TempData["Title"].ToString();
+            string Location = TempData["Location"].ToString();
+            string SubLocation = TempData["SubLocation"].ToString();
+            string Details = TempData["Details"].ToString();
+            string SubCategory = TempData["SubCategory"].ToString();
+
+
             if (TempData["Uniquekey"] == null)
             {
-                return RedirectToAction("NotFound");
+                var products = from m in obj.Losttbls
+                               where ((m.SubCategory1.SubCategoryName.Contains(SubCategory)) && (m.Title.Contains(Title) || m.Location1.LocationName.Contains(Location) || m.SubLocation1.SubLocationName.Contains(SubLocation) || m.Details.Contains(Details)))
+                               select m;
+                return View(products.ToList());
+
+                //   return RedirectToAction("NotFound");
             }
 
 
@@ -305,9 +357,21 @@ namespace LOF.Controllers
         }
         public ActionResult MatchedproductsToplost(string sortOrder, string title, int? Id)
         {
+            string Title = TempData["Titletl"].ToString();
+            string Location = TempData["Locationtl"].ToString();
+            string SubLocation = TempData["SubLocationtl"].ToString();
+            string Details = TempData["Detailstl"].ToString();
+            string SubCategory = TempData["SubCategorytl"].ToString();
+
+
             if (TempData["Uniuekey"] == null)
             {
-                return RedirectToAction("NotFound");
+                var products = from m in obj.Foundtbls
+                               where ((m.SubCategory1.SubCategoryName.Contains(SubCategory)) && (m.Title.Contains(Title) || m.Location1.LocationName.Contains(Location) || m.SubLocation1.SubLocationName.Contains(SubLocation) || m.Details.Contains(Details)))
+                               select m;
+                return View(products.ToList());
+
+                //   return RedirectToAction("NotFound");
             }
 
 

@@ -97,6 +97,8 @@ namespace LOF.Controllers
         // GET: LostProducts/Details/5
         public ActionResult Details(int? id)
         {
+           // var lostproducts = db.Losttbls.Include(m => m.Category1).Include(m => m.SubCategory1).SingleOrDefault(x => x.Id == id);
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -106,6 +108,26 @@ namespace LOF.Controllers
             {
                 return HttpNotFound();
             }
+            TempData["Title"] = db.Losttbls
+                .Where(x => x.Id == id)
+                .Select(x => x.Title)
+                .FirstOrDefault();
+            TempData["Location"] = db.Losttbls
+                 .Where(x => x.Id == id)
+                 .Select(x => x.Location1.LocationName)
+                 .FirstOrDefault();
+            TempData["SubLocation"] = db.Losttbls
+              .Where(x => x.Id == id)
+              .Select(x => x.SubLocation1.SubLocationName)
+              .FirstOrDefault();
+            TempData["Details"] = db.Losttbls
+             .Where(x => x.Id == id)
+             .Select(x => x.Details)
+             .FirstOrDefault();
+            TempData["SubCategory"] = db.Losttbls
+                .Where(x => x.Id == id)
+               .Select(x => x.SubCategory1.SubCategoryName)
+                .FirstOrDefault();
             if (losttbl.UniqueKey != null)
             {
                 TempData["Uniquekey"] = db.Losttbls
@@ -117,9 +139,21 @@ namespace LOF.Controllers
         }
         public ActionResult Matchedproducts(string sortOrder, string title, int? Id)
         {
+            string Title = TempData["Title"].ToString();
+            string Location = TempData["Location"].ToString();
+            string SubLocation = TempData["SubLocation"].ToString();
+            string Details = TempData["Details"].ToString();
+            string SubCategory = TempData["SubCategory"].ToString();
+
+
             if (TempData["Uniquekey"] == null)
             {
-                return RedirectToAction("NotFound");
+                var products = from m in db.Foundtbls
+                               where ((m.SubCategory1.SubCategoryName.Contains(SubCategory)) && (m.Title.Contains(Title) || m.Location1.LocationName.Contains(Location) || m.SubLocation1.SubLocationName.Contains(SubLocation) || m.Details.Contains(Details)))
+                               select m;
+                return View(products.ToList());
+
+                //   return RedirectToAction("NotFound");
             }
 
 
@@ -139,6 +173,10 @@ namespace LOF.Controllers
                          select m;
 
 
+            if (movies == null)
+            {
+                return RedirectToAction("NotFound");
+            }
             switch (sortOrder)
             {
 

@@ -130,17 +130,24 @@ namespace LOF.Controllers
         }
         public ActionResult Matchedproducts(string sortOrder, string title, int? Id)
         {
-            if (TempData["Uniquekey"] == null)
-            {
-                return RedirectToAction("NotFound");
-            }
+            
             string Title = TempData["Title"].ToString();
             string Location = TempData["Location"].ToString();
             string SubLocation = TempData["SubLocation"].ToString();
             string Details = TempData["Details"].ToString();
             string SubCategory = TempData["SubCategory"].ToString();
-          
-                int uniquekey = (int)TempData["Uniquekey"];
+
+
+            if (TempData["Uniquekey"] == null)
+            {
+                var products = from m in db.AllProductsTbls
+                               where ((m.SubCategory1.SubCategoryName.Contains(SubCategory)) && (m.Title.Contains(Title) || m.Location1.LocationName.Contains(Location) || m.SubLocation1.SubLocationName.Contains(SubLocation) || m.Details.Contains(Details)))
+                               select m;
+                return View(products.ToList());
+
+                //   return RedirectToAction("NotFound");
+            }
+            int uniquekey = (int)TempData["Uniquekey"];
             
 
             ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
@@ -149,9 +156,9 @@ namespace LOF.Controllers
                               where  ((m.SubCategory1.SubCategoryName.Contains(SubCategory))&&(m.Title.Contains(Title)||m.Location1.LocationName.Contains(Location) || m.SubLocation1.SubLocationName.Contains(SubLocation)|| m.Details.Contains(Details)))
                               select m;
                               */
-          
 
-                var movies = from m in db.AllProductsTbls
+
+            var movies = from m in db.AllProductsTbls
                              where (m.UniqueKey == uniquekey)
                              select m;
             
