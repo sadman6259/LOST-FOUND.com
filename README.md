@@ -18,8 +18,6 @@
 #### Submit form for lost products :
 <img src ="LOF%20SCREENSHOTS/Productsubmitform.PNG" width="500"> <br/>  
 
-#### Submit form for lost products :
-<img src ="LOF%20SCREENSHOTS/Productsubmitform.PNG" width="500"> <br/>  
 
 #### Admin approval:
 <img src ="LOF%20SCREENSHOTS/adminapproval.PNG" width="500"> <br/>  
