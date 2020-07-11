@@ -3,6 +3,6 @@
 ###### It has features like  User Registration , Login ,Location wise founded and lost product distribution , Top found and lost products with details section , Matched Products(If founded and lost product matched),User Friendly Searching Capability(search by category , subcategory , location etc)
 ## Here are some screenshots of the web app 
 #### Homepage:
-<img src ="LOF%20SCREENSHOTS/Homepage-1.PNG" >  <img src ="LOF%20SCREENSHOTS/Homepag-2.PNG" >
+<img src ="LOF%20SCREENSHOTS/Homepage-1.PNG" width="700"> <br/> <img src ="LOF%20SCREENSHOTS/Homepag-2.PNG" ><br/> <img src ="LOF%20SCREENSHOTS/Homepage-3.PNG">
 
-<img src ="LOF%20SCREENSHOTS/Homepage-3.PNG">
+
