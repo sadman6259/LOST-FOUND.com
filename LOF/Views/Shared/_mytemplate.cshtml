@@ -6,7 +6,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Bootshop online Shopping cart</title>
+    <title>Lost&Found Homepage</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -146,8 +146,13 @@
 
                 </ul>
             </div>
-
-
+            @*
+            <div class="row">
+                <div class="col-md-12">
+                    <p><img class=" img-fluid" src='@Url.Content("~/Content/mytemplate/images/LOF.png")'alt="card image"></p>
+                </div>
+            </div>
+                *@
             <div class="row">
                 <!-- Sidebar ================================================== -->
                 <div id="sidebar" class="col-md-2" style="margin-top:80px;">
@@ -408,7 +413,7 @@
                                 <div class="frontside">
                                     <div class="card">
                                         <div class="card-body text-center">
-                                            <p><img class=" img-fluid" src="http://othersfoundation.org/wp-content/uploads/2018/11/others.png" alt="card image"></p>
+                                            <p><img class=" img-fluid" src="https://www.grabprinting.com/wp-content/uploads/2016/08/others-fb.png" alt="card image"></p>
 
                                             <h4 class="card-title">Others</h4>
                                             <p class="card-text">Browse All Founded and losted jwelary,music instruments,sports equipments </p>
@@ -435,7 +440,7 @@
                                 <div class="frontside">
                                     <div class="card">
                                         <div class="card-body text-center">
-                                            <p><img class=" img-fluid" src="https://wcs.smartdraw.com/certificate/img/certificate-1.jpg?bn=1510011144" alt="card image"></p>
+                                            <p><img class=" img-fluid" src="https://img.freepik.com/free-vector/elegant-diploma-certificate-template-design_1017-17253.jpg?size=626&ext=jpg" alt="card image"></p>
 
                                             <h4 class="card-title">Certificate</h4>
                                             <p class="card-text">Browse All Certificates here </p>
@@ -568,29 +573,29 @@
                                                 count++;
                                                 if (count >= 1 && count < 4)
                                                 {
-                                        <li class="col-md-3" style="width:300px;height:290px;">
+                                                    <li class="col-md-3" style="width:300px;height:290px;">
 
-                                            <div class="thumbnail" style="width:300px;height:180px;">
-
-
-
-                                                <a><img src="@Url.Content(Toplost.Image)" width="800" height="600"></a>
+                                                        <div class="thumbnail" style="width:300px;height:180px;">
 
 
 
-                                            </div>
-                                            <div class="caption"style="margin-top:70px;">
-                                                <h4>
-                                                    @Html.DisplayFor(modelItem => Toplost.Title)
-                                                </h4>
-                                                <br />
+                                                            <a><img src="@Url.Content(Toplost.Image)" width="800" height="600"></a>
 
-                                            </div>
-                                            <div >
-                                                @Html.ActionLink("View", "DetailsTopLost", "Template", new { id = Toplost.Id }, new { @class = "btn btn-primary" }) <span class="pull-right"></span>
 
-                                            </div>
-                                        </li>
+
+                                                        </div>
+                                                        <div class="caption" style="margin-top:70px;">
+                                                            <h4>
+                                                                @Html.DisplayFor(modelItem => Toplost.Title)
+                                                            </h4>
+                                                            <br />
+
+                                                        </div>
+                                                        <div>
+                                                            @Html.ActionLink("View", "DetailsTopLost", "Template", new { id = Toplost.Id }, new { @class = "btn btn-primary" }) <span class="pull-right"></span>
+
+                                                        </div>
+                                                    </li>
                                                 }
                                             }
                                         }
@@ -607,27 +612,27 @@
                                                 {
 
 
-                                        <li class="col-md-3" style="width:300px;height:290px;">
+                                                    <li class="col-md-3" style="width:300px;height:290px;">
 
-                                            <div class="thumbnail" style="width:300px;height:180px;">
-
-
-
-                                                <a><img src="@Url.Content(Toplost.Image)" width="800" height="600"></a>
-                                                <div class="caption" style="height:80px;">
-                                                    <h4>
-                                                        @Html.DisplayFor(modelItem => Toplost.Title)
-                                                    </h4>
+                                                        <div class="thumbnail" style="width:300px;height:180px;">
 
 
-                                                </div>
 
-                                            </div>
-                                            <div style="margin-top:90px;">
-                                                @Html.ActionLink("View", "DetailsTopLost", "Template", new { id = Toplost.Id }, new { @class = "btn btn-primary" }) <span class="pull-right"></span>
+                                                            <a><img src="@Url.Content(Toplost.Image)" width="800" height="600"></a>
+                                                            <div class="caption" style="height:80px;">
+                                                                <h4>
+                                                                    @Html.DisplayFor(modelItem => Toplost.Title)
+                                                                </h4>
 
-                                            </div>
-                                        </li>
+
+                                                            </div>
+
+                                                        </div>
+                                                        <div style="margin-top:90px;">
+                                                            @Html.ActionLink("View", "DetailsTopLost", "Template", new { id = Toplost.Id }, new { @class = "btn btn-primary" }) <span class="pull-right"></span>
+
+                                                        </div>
+                                                    </li>
                                                 }
                                             }
                                         }

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="LOFDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="LOFDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AdminApprovalTbl">
           <Key>
             <PropertyRef Name="Id" />
@@ -211,7 +211,7 @@ warning 6002: The table/view 'LOFDb.dbo.AdminLoginTbl' does not have a primary k
           <Property Name="LocationId" Type="int" />
           <Property Name="SubLocationId" Type="int" />
           <Property Name="OwnerAddress" Type="varchar" MaxLength="50" />
-          <Property Name="UniueKey" Type="int" />
+          <Property Name="UniqueKey" Type="int" />
         </EntityType>
         <Association Name="FK_AdminApprovalTbl_Category">
           <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
@@ -730,8 +730,7 @@ warning 6002: The table/view 'LOFDb.dbo.AdminLoginTbl' does not have a primary k
             <End Role="TopLosttbl" EntitySet="TopLosttbl" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="LOFDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -986,12 +985,12 @@ warning 6002: The table/view 'LOFDb.dbo.AdminLoginTbl' does not have a primary k
           <Property Name="LocationId" Type="Int32" />
           <Property Name="SubLocationId" Type="Int32" />
           <Property Name="OwnerAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="UniueKey" Type="Int32" />
           <NavigationProperty Name="Category1" Relationship="Self.FK_TopLosttbl_Category" FromRole="TopLosttbl" ToRole="Category" />
           <NavigationProperty Name="Location1" Relationship="Self.FK_TopLosttbl_Location" FromRole="TopLosttbl" ToRole="Location" />
           <NavigationProperty Name="Losttbl" Relationship="Self.FK_TopLosttbl_Losttbl" FromRole="TopLosttbl" ToRole="Losttbl" />
           <NavigationProperty Name="SubCategory1" Relationship="Self.FK_TopLosttbl_SubCategory" FromRole="TopLosttbl" ToRole="SubCategory" />
           <NavigationProperty Name="SubLocation1" Relationship="Self.FK_TopLosttbl_SubLocation" FromRole="TopLosttbl" ToRole="SubLocation" />
+          <Property Name="UniqueKey" Type="Int32" />
         </EntityType>
         <EntityType Name="AdminLoginTbl">
           <Key>
@@ -1706,6 +1705,7 @@ warning 6002: The table/view 'LOFDb.dbo.AdminLoginTbl' does not have a primary k
           <EntitySetMapping Name="TopLosttbls">
             <EntityTypeMapping TypeName="LOFDbModel.TopLosttbl">
               <MappingFragment StoreEntitySet="TopLosttbl">
+                <ScalarProperty Name="UniqueKey" ColumnName="UniqueKey" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="Image" ColumnName="Image" />
@@ -1724,7 +1724,6 @@ warning 6002: The table/view 'LOFDb.dbo.AdminLoginTbl' does not have a primary k
                 <ScalarProperty Name="LocationId" ColumnName="LocationId" />
                 <ScalarProperty Name="SubLocationId" ColumnName="SubLocationId" />
                 <ScalarProperty Name="OwnerAddress" ColumnName="OwnerAddress" />
-                <ScalarProperty Name="UniueKey" ColumnName="UniueKey" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

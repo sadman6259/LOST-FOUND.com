@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -96,14 +97,30 @@ namespace LOF.Controllers
             if (ModelState.IsValid)
             {
 
-                if(appoval.Type == "FOUNDED")
+           
+                if (appoval.Type == "LOSTED")
+                {
+
+                    db.AllProductsTbls.Add(adminApprovalTbl);
+                    db.Losttbls.Add(losttbl);
+
+                }
+                else if (appoval.Type == "TOP LOSTED")
+                {
+                    db.AllProductsTbls.Add(adminApprovalTbl);
+                    db.Losttbls.Add(losttbl);
+
+                    db.TopLosttbls.Add(toplosttbl);
+
+                }
+               else if (appoval.Type == "FOUNDED")
                 {
 
                     db.AllProductsTbls.Add(adminApprovalTbl);
                     db.Foundtbls.Add(foundtbl);
 
                 }
-                if (appoval.Type == "TOP FOUNDED")
+                else if (appoval.Type == "TOP FOUNDED")
                 {
 
                     db.AllProductsTbls.Add(adminApprovalTbl);
@@ -112,35 +129,37 @@ namespace LOF.Controllers
                     db.Topfoundtbls.Add(topfoundtbl);
 
                 }
-                if (appoval.Type == "LOSTED")
-                {
+                //     db.AllProductsTbls.Add(adminApprovalTbl);
 
-                    db.AllProductsTbls.Add(adminApprovalTbl);
-                    db.Losttbls.Add(losttbl);
+                //  db.Entry(adminApprovalTbl).State = EntityState.Modified;
 
-                }
-                if (appoval.Type == "TOP LOSTED")
-                {
-                    db.AllProductsTbls.Add(adminApprovalTbl);
-                    db.Losttbls.Add(losttbl);
 
-                    db.TopLosttbls.Add(toplosttbl);
-
-                }
-           //     db.AllProductsTbls.Add(adminApprovalTbl);
-
-              //  db.Entry(adminApprovalTbl).State = EntityState.Modified;
-                db.SaveChanges();
-           
-                
-                    return RedirectToAction("CreateConfirm");
-                
             }
+          
             ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId", "CategoryName", adminApprovalTbl.CategoryId);
             ViewBag.LocationId = new SelectList(db.Locations, "LocationId", "LocationName", adminApprovalTbl.LocationId);
             ViewBag.SubCategoryId = new SelectList(db.SubCategories, "SubCategoryId", "SubCategoryName", adminApprovalTbl.SubCategoryId);
             ViewBag.SubLocationId = new SelectList(db.SubLocations, "SubLocationId", "SubLocationName", adminApprovalTbl.SubLocationId);
-            return View(appoval);
+            try
+            {
+                db.SaveChanges();
+
+
+            }
+            catch (DbEntityValidationException ex)
+            {
+                foreach (var entityValidationErrors in ex.EntityValidationErrors)
+                {
+                    foreach (var validationError in entityValidationErrors.ValidationErrors)
+                    {
+                        Response.Write("Property: " + validationError.PropertyName + " Error: " + validationError.ErrorMessage);
+                    }
+                }
+            }
+
+
+            return RedirectToAction("CreateConfirm");
+           // return View(appoval);
         }
 
         // GET: AdminApproval/Delete/5

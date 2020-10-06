@@ -346,6 +346,7 @@
     <Content Include="Content\mytemplate\images\blog1.jpg" />
     <Content Include="Content\mytemplate\images\blog2.jpg" />
     <Content Include="Content\mytemplate\images\blog3.jpg" />
+    <Content Include="Content\mytemplate\images\LOF.png" />
     <Content Include="Content\mytemplate\images\m1.jpg" />
     <Content Include="Content\mytemplate\images\m2.jpg" />
     <Content Include="Content\mytemplate\images\m3.jpg" />
@@ -948,6 +949,9 @@
     <Content Include="Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\Lostandfoundsites - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\Lostandfoundsites - ReadOnly - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\Lostandfoundsites - Web Deploy.pubxml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -964,7 +968,9 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>

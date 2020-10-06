@@ -295,11 +295,11 @@ namespace LOF.Controllers
                 .Where(x => x.Id == id)
                .Select(x => x.SubCategory1.SubCategoryName)
                 .FirstOrDefault();
-            if (foundtbl.UniueKey != null)
+            if (foundtbl.UniqueKey != null)
             {
                 TempData["Uniuekey"] = obj.TopLosttbls
                  .Where(x => x.Id == id)
-                .Select(x => x.UniueKey)
+                .Select(x => x.UniqueKey)
                  .FirstOrDefault();
             }
             return View(foundtbl);
@@ -522,7 +522,7 @@ namespace LOF.Controllers
             string query = "SELECT (Location.LocationName) TotalLo, COUNT(AllProductsTbl.Id) TotalId";
             query += " FROM AllProductsTbl,Location WHERE Location.LocationId = AllProductsTbl.LocationId GROUP BY Location.LocationName";
              
-                string constr = "Data Source=DELL-PC;Initial Catalog=LOFDb;Integrated Security=True";
+                string constr = "Data Source=lofdbserver.database.windows.net;Initial Catalog=Lofdb1;Integrated Security=True";
                 List<object> chartData = new List<object>();
                 chartData.Add(new object[]
                                 {
