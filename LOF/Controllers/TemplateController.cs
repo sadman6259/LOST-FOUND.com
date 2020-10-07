@@ -522,7 +522,7 @@ namespace LOF.Controllers
             string query = "SELECT (Location.LocationName) TotalLo, COUNT(AllProductsTbl.Id) TotalId";
             query += " FROM AllProductsTbl,Location WHERE Location.LocationId = AllProductsTbl.LocationId GROUP BY Location.LocationName";
              
-                string constr = "Data Source=DELL-PC;Initial Catalog=LOFDb;Integrated Security=True";
+                string constr = "Data Source=lofdbserver.database.windows.net;Initial Catalog=Lofdb1;Integrated Security=True";
                 List<object> chartData = new List<object>();
                 chartData.Add(new object[]
                                 {
