@@ -530,6 +530,7 @@ namespace LOF.Controllers
                                 });
                 using (SqlConnection con = new SqlConnection(constr))
                 {
+                /////
                     using (SqlCommand cmd = new SqlCommand(query))
                     {
                         cmd.CommandType = CommandType.Text;
